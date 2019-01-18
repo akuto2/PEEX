@@ -7,8 +7,8 @@ import Akuto2.Blocks.BlockCollector;
 import Akuto2.Blocks.BlockCondenserGrade0;
 import Akuto2.Blocks.BlockCondenserMk3;
 import Akuto2.Blocks.BlockRelay;
-import Akuto2.Blocks.BlockTransmutaionStoneMk2;
 import Akuto2.Items.Armor.BMArmor;
+import Akuto2.Items.Armor.CMArmor;
 import Akuto2.TileEntity.TileEntityCollectorFinal;
 import Akuto2.TileEntity.TileEntityCollectorMk10;
 import Akuto2.TileEntity.TileEntityCollectorMk6;
@@ -22,6 +22,7 @@ import Akuto2.TileEntity.TileEntityRelayMk4;
 import Akuto2.TileEntity.TileEntityRelayMk5;
 import Akuto2.Utils.EnumArmorType;
 import cpw.mods.fml.common.registry.GameRegistry;
+import lib.utils.RecipeManager;
 import moze_intel.projecte.gameObjs.ObjHandler;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -94,8 +95,16 @@ public class ObjHandlerPEEX {
 		GameRegistry.registerItem(bmLegs, "bmLegs");
 		bmFeet = new BMArmor(EnumArmorType.FEET);
 		GameRegistry.registerItem(bmFeet, "bmFeet");
-		transmutationStoneMk2 = new BlockTransmutaionStoneMk2();
-		GameRegistry.registerBlock(transmutationStoneMk2, "transmutationStonePEEX");
+		cmHelmet = new CMArmor(EnumArmorType.HEAD);
+		GameRegistry.registerItem(cmHelmet, "cmHelmet");
+		cmChest = new CMArmor(EnumArmorType.CHEST);
+		GameRegistry.registerItem(cmChest, "cmChest");
+		cmLegs = new CMArmor(EnumArmorType.LEGS);
+		GameRegistry.registerItem(cmLegs, "cmLegs");
+		cmFeet = new CMArmor(EnumArmorType.FEET);
+		GameRegistry.registerItem(cmFeet, "cmFeet");
+//		transmutationStoneMk2 = new BlockTransmutaionStoneMk2();
+//		GameRegistry.registerBlock(transmutationStoneMk2, "transmutationStonePEEX");
 		GameRegistry.registerTileEntity(TileEntityRelayMk4.class, "tile.relayMk4");
 		GameRegistry.registerTileEntity(TileEntityRelayMk5.class, "tile.relayMk5");
 	}
@@ -110,10 +119,8 @@ public class ObjHandlerPEEX {
 		GameRegistry.addRecipe(new ItemStack(relayMk5), "rrr", "rar", "rrr", 'r', relayMk4, 'a', chaosmatter);
 		GameRegistry.addRecipe(new ItemStack(bluematterBlock), "bbb", "bbb", "bbb", 'b', bluematter);
 		GameRegistry.addRecipe(new ItemStack(chaosmatterBlock), "ccc", "ccc", "ccc", 'c', chaosmatter);
-		GameRegistry.addRecipe(new ItemStack(bmHelmet), "xxx", "x x", 'x', bluematter);
-		GameRegistry.addRecipe(new ItemStack(bmChest), "x x", "xxx", "xxx", 'x', bluematter);
-		GameRegistry.addRecipe(new ItemStack(bmLegs), "xxx", "x x", "x x", 'x', bluematter);
-		GameRegistry.addRecipe(new ItemStack(bmFeet), "x x", "x x", 'x', bluematter);
+		RecipeManager.addArmorRecipe(new ItemStack(bluematter), new ItemStack(bmHelmet), new ItemStack(bmChest), new ItemStack(bmLegs), new ItemStack(bmFeet));
+		RecipeManager.addArmorRecipe(new ItemStack(chaosmatter), new ItemStack(cmHelmet), new ItemStack(cmChest), new ItemStack(cmLegs), new ItemStack(cmFeet));
 	}
 
 	public static void registerPEAA() {

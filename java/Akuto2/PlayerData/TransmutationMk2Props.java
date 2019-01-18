@@ -118,12 +118,12 @@ public class TransmutationMk2Props implements IExtendedEntityProperties{
 		NBTTagList inputLockWrite = ItemHelper.toIndexedNBTList(inputLocks);
 		properties.setTag("knowledge", knowledgeWrite);
 		properties.setTag("inputlock", inputLockWrite);
-		compound.setTag("PEEXTransmutationMk2", properties);
+		compound.setTag("TransmutationMk2", properties);
 	}
 
 	@Override
 	public void loadNBTData(NBTTagCompound compound) {
-		NBTTagCompound properties = compound.getCompoundTag("PEEXTransmutationMk2");
+		NBTTagCompound properties = compound.getCompoundTag("TransmutationMk2");
 
 		transmutaionEmc = properties.getFloat("transumutationMk2Emc");
 

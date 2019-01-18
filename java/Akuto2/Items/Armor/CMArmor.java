@@ -15,12 +15,12 @@ public class CMArmor extends ItemArmor{
 		setHasSubtypes(false);
 		setCreativeTab(PEEXCore.tabPEEX);
 		setUnlocalizedName("cm_armor_" + armorType.name.toLowerCase());
-		setTextureName("peex:cm_armor/" + armorType.name.toLowerCase() + ".png");
+		setTextureName("peex:cm_armor/" + armorType.name.toLowerCase());
 	}
 
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type) {
-		char index = (armorType == EnumArmorType.FEET) ? '2' : '1';
+		char index = (armorType == EnumArmorType.LEGS) ? '2' : '1';
 		return "peex:textures/models/cm_armor" + index + ".png";
 	}
 
