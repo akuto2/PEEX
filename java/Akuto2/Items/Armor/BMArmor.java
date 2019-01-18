@@ -15,12 +15,12 @@ public class BMArmor extends ItemArmor{
 		setHasSubtypes(false);
 		setCreativeTab(PEEXCore.tabPEEX);
 		setUnlocalizedName("bm_armor_" + armorType.name.toLowerCase());
-		setTextureName("peex:bm_armor/" + armorType.name.toLowerCase() + ".png");
+		setTextureName("peex:bm_armor/" + armorType.name.toLowerCase());
 	}
 
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type) {
-		char index = (armorType == EnumArmorType.FEET) ? '2' : '1';
+		char index = (armorType == EnumArmorType.LEGS) ? '2' : '1';
 		return "peex:textures/models/bm_armor" + index + ".png";
 	}
 

@@ -14,7 +14,7 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.config.Configuration;
 
-@Mod(modid = "PEEX", name = "PEEX", version = "1.2.1", dependencies = "required-after:ProjectE;after:PEAA")
+@Mod(modid = "PEEX", name = "PEEX", version = "1.2.3", dependencies = "required-after:AkutoLib;required-after:ProjectE;after:PEAA")
 public class PEEXCore {
 	@Instance("PEEX")
 	public static PEEXCore instance;

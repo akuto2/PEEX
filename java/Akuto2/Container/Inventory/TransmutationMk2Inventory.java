@@ -23,7 +23,7 @@ import net.minecraft.nbt.NBTTagCompound;
 public class TransmutationMk2Inventory implements IInventory{
 	public float emc;
 	public static final float TRANSMUTATION_MAX_EMC = 1.0E20F;
-	private EntityPlayer player = null;
+	private EntityPlayer player;
 	private static final int LOCK_INDEX = 8;
 	private static final int[] MATTER_INDEXS = {12, 11, 13, 10, 14, 21, 15, 20, 16, 19, 17, 18};
 	private static final int[] FUEL_INDEXES = {22, 23, 24, 25};

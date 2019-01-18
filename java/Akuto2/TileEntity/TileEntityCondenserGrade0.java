@@ -78,7 +78,14 @@ public class TileEntityCondenserGrade0 extends TileEntityDirection implements II
 		if(inventory[slot] == null){
 			ItemStack lockCopy = lock.copy();
 			if((lockCopy.hasTagCompound()) && (!NBTWhitelist.shouldDupeWithNBT(lockCopy))){
-				lockCopy.setTagCompound(new NBTTagCompound());
+				if(lockCopy.getTagCompound().getString("TypeName") != null) {
+					String typeName = lockCopy.getTagCompound().getString("TypeName");
+					lockCopy.setTagCompound(new NBTTagCompound());
+					lockCopy.getTagCompound().setString("TypeName", typeName);
+				}
+				else {
+					lockCopy.setTagCompound(new NBTTagCompound());
+				}
 			}
 			inventory[slot] = lockCopy;
 		}

@@ -157,6 +157,8 @@ public class GuiHandler implements IGuiHandler{
 			return new GuiRelayFinal(player.inventory, (TileEntityRelayFinal)tileentity);
 		}
 		break;
+		case 11:
+			return new GuiTransmutationMk2(player.inventory, new TransmutationMk2Inventory(player));
 		}
 		return null;
 	}
