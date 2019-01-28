@@ -40,7 +40,7 @@ public class TileEntityCondenserGrade0 extends TileEntityDirection implements II
 		}
 		if (this.getWorldObj().getBlock(xCoord, yCoord, zCoord) instanceof BlockCondenserGrade0)
 			pushToInventories();
-		if(loadChecks){
+		if(!loadChecks){
 			checkLockAndUpdate();
 			loadChecks = true;
 		}
@@ -153,7 +153,7 @@ public class TileEntityCondenserGrade0 extends TileEntityDirection implements II
 		super.writeToNBT(nbt);
 		NBTTagList list = new NBTTagList();
 		for(int i = 0; i < inventory.length; i++){
-			if(inventory != null){
+			if(inventory[i] != null){
 				NBTTagCompound subNBT = new NBTTagCompound();
 				subNBT.setByte("Slot", (byte)i);
 				inventory[i].writeToNBT(subNBT);
