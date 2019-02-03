@@ -59,6 +59,8 @@ public class ObjHandlerPEEX {
 	public static Item bluematter;
 	public static Item chaosmatter;
 
+	public static Item archangelRingMk2;
+
 	public static Item bmHelmet;
 	public static Item bmChest;
 	public static Item bmLegs;
