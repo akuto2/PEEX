@@ -17,6 +17,7 @@ tile.bluematterblock.name=ブルマターブロック
 tile.chaosmatterblock.name=カオスマターブロック
 item.bluematter.name=ブルーマター
 item.chaosmatter.name=カオスマター
+item.archangering.mk2.name=大天使の指輪 Mk2
 item.bm_armor_head.name=ブルーマターヘルメット
 item.bm_armor_chest.name=ブルーマターチェストプレート
 item.bm_armor_legs.name=ブルーマターレギンス
@@ -25,3 +26,6 @@ item.cm_armor_head.name=カオスマターヘルメット
 item.cm_armor_chest.name=カオスマターチェストプレート
 item.cm_armor_legs.name=カオスマターレギンス
 item.cm_armor_feet.name=カオスマターブーツ
+
+peex.update.client=§d§lPEEX§rが%1$sにアップデートされました！ §5§nここからダウンロードしてください！§r
+peex.update.server=PEEXが%1$sにアップデートされました。 ダウンロードはこちら:%2$s.

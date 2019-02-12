@@ -18,7 +18,7 @@ import lib.utils.UpdateChecker;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.config.Configuration;
 
-@Mod(modid = "PEEX", name = "PEEX", version = "1.2.4", dependencies = "required-after:AkutoLib;required-after:ProjectE;after:PEAA")
+@Mod(modid = "PEEX", name = "PEEX", version = "1.2.5", dependencies = "required-after:AkutoLib;required-after:ProjectE;after:PEAA")
 public class PEEXCore {
 	@Instance("PEEX")
 	public static PEEXCore instance;
