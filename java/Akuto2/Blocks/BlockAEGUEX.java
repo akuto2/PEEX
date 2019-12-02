@@ -1,212 +1,110 @@
-package Akuto2.Blocks;
+package Akuto2.blocks;
 
 import java.util.Random;
 
 import Akuto2.ObjHandlerPEEX;
-import Akuto2.PEEXCore;
-import Akuto2.TileEntity.TileEntityCondenserMk3;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.properties.PropertyEnum;
+import net.minecraft.block.state.BlockStateContainer;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
-import net.minecraft.util.IIcon;
-import net.minecraft.world.World;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumBlockRenderType;
+import net.minecraft.util.IStringSerializable;
 
-public class BlockAEGUEX extends Block {
+public class BlockAEGUEX extends Block{
 
-	private int tier;
-
+	public static final PropertyEnum<EnumAEGUEXTier> TIER = PropertyEnum.create("tier", EnumAEGUEXTier.class);
 	protected boolean isGenerate;
 	String xMK3 = "", yMK3 = "", zMK3 = "";
 
-	public BlockAEGUEX(int tier, boolean isGenerate){
-		super(Material.grass);
-		if(!isGenerate){
-			setCreativeTab(PEEXCore.tabPEEX);
-		}
-		setBlockName("AEGUEX_MK" + tier);
-		setHardness(0.3F);
-		setLightLevel(1.0F);
-		setStepSound(soundTypeGlass);
-
-		this.tier = tier;
-		this.isGenerate = isGenerate;
+	public BlockAEGUEX(boolean isGenerate) {
+		super(Material.GRASS);
+		setUnlocalizedName("AEGUEX");
+		setHardness(0.3f);
+		setLightLevel(1.0f);
 	}
 
 	@Override
-	public int onBlockPlaced(World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ, int metadata) {
-		if (!world.isRemote) {
-			if(this.checkMK3(world, x, y, z) == true) {
-				this.notifyToMK3(world, x, y, z);
-			}
-		}
-
-		return metadata;
+	public int damageDropped(IBlockState state) {
+		return state.getValue(TIER).getMeta();
 	}
 
 	@Override
-	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int size, float posX, float posY, float posZ)
-	{
-		if (!world.isRemote)
-			openMK3GUI(world, x, y, z, player);
-		return isGenerate;
-	}
-
-	public void changeGenerate(World world, int x, int y, int z) {
-		switch (tier) {
-		case 1:
-			if (this.isGenerate) {
-				world.setBlock(x, y, z, ObjHandlerPEEX.aeguEXMk1_off);
-			} else {
-				world.setBlock(x, y, z, ObjHandlerPEEX.aeguEXMk1_on);
-			}
-			break;
-		case 2:
-			if (this.isGenerate) {
-				world.setBlock(x, y, z, ObjHandlerPEEX.aeguEXMk2_off);
-			} else {
-				world.setBlock(x, y, z, ObjHandlerPEEX.aeguEXMk2_on);
-			}
-			break;
-		case 3:
-			if (this.isGenerate) {
-				world.setBlock(x, y, z, ObjHandlerPEEX.aeguEXMK3_off);
-			} else {
-				world.setBlock(x, y, z, ObjHandlerPEEX.aeguEXMK3_on);
-			}
-			break;
-		case 4:
-			if (this.isGenerate) {
-				world.setBlock(x, y, z, ObjHandlerPEEX.aeguEXFinal_off);
-			} else {
-				world.setBlock(x, y, z, ObjHandlerPEEX.aeguEXFinal_on);
-			}
-		}
-
+	public int getMetaFromState(IBlockState state) {
+		return state.getValue(TIER).getMeta();
 	}
 
 	@Override
-	public void onBlockDestroyedByPlayer(World world, int x, int y, int z, int metadata)
-	{
-		if (!world.isRemote) {
-			notifyBreak(world, x, y, z);
-		}
-	}
-
-	@SideOnly(Side.CLIENT)
-	@Override
-	public void registerBlockIcons(IIconRegister iconRegister)
-	{
-		this.blockIcon = iconRegister.registerIcon("peex:aeguex" + this.tier + (isGenerate ? "gene" : ""));
+	public IBlockState getStateFromMeta(int meta) {
+		return getDefaultState().withProperty(TIER, EnumAEGUEXTier.fromMeta(meta));
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public IIcon getIcon(int side, int meta)
-	{
-		return this.blockIcon;
+	protected BlockStateContainer createBlockState() {
+		return new BlockStateContainer(this, new IProperty[] { TIER });
 	}
 
 	@Override
-	public Item getItemDropped(int no, Random rnd, int clue)
-	{
-		switch (tier) {
-		case 1:
-			return Item.getItemFromBlock(ObjHandlerPEEX.aeguEXMk1_off);
-		case 2:
-			return Item.getItemFromBlock(ObjHandlerPEEX.aeguEXMk2_off);
-		case 3:
-			return Item.getItemFromBlock(ObjHandlerPEEX.aeguEXMK3_off);
-		case 4:
-			return Item.getItemFromBlock(ObjHandlerPEEX.aeguEXFinal_off);
-		}
-		return null;
+	public EnumBlockRenderType getRenderType(IBlockState state) {
+		return EnumBlockRenderType.MODEL;
 	}
 
-	public boolean checkMK3(World world, int xCoord, int yCoord, int zCoord) {
-		xMK3 = "";yMK3 = "";zMK3 = "";
+	@Override
+	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
+		int meta = state.getValue(TIER).getMeta();
+		return new ItemStack(ObjHandlerPEEX.aeguEX_off, 1, meta).getItem();
+	}
 
-		for (int x = xCoord - 1; x <= xCoord + 1; x++) {
-			for (int y = yCoord - 1; y <= yCoord + 1; y++) {
-				for (int z = zCoord - 1; z <= zCoord + 1; z++) {
-					if (world.getBlock(x, y, z) instanceof BlockCondenserMk3) {
-						if (xMK3 == "" && yMK3 == "" && zMK3 == "") {
-							xMK3 = String.valueOf(x);
-							yMK3 = String.valueOf(y);
-							zMK3 = String.valueOf(z);
-						} else {
-							return false;
-						}
-					}
-				}
+	public enum EnumAEGUEXTier implements IStringSerializable{
+		mk1(0, 1, "mk1", 100000),
+		mk2(1, 2, "mk2", 1000000),
+		mk3(2, 3, "mk3", 35000000),
+		mkFinal(3, 0, "final", 10000000000000000L);
+
+		private static EnumAEGUEXTier[] aeguexTiers;
+		private int meta;
+		private int tier;
+		private String name;
+		private long generateEmc;
+
+		static {
+			aeguexTiers = new EnumAEGUEXTier[values().length];
+			for(EnumAEGUEXTier aeguexTier : values()) {
+				aeguexTiers[values().length] = aeguexTier;
 			}
 		}
-		if (xMK3 != "" && yMK3 != "" && zMK3 != "") {
-			return true;
+
+		private EnumAEGUEXTier(int meta, int tier, String name, long generateEmc) {
+			this.meta = meta;
+			this.tier = tier;
+			this.name = name;
+			this.generateEmc = generateEmc;
 		}
-		return false;
-	}
 
-	public void notifyToMK3(World world, int xCoord, int yCoord, int zCoord)
-	{
-		int x = Integer.parseInt(xMK3);
-		int y = Integer.parseInt(yMK3);
-		int z = Integer.parseInt(zMK3);
-		if (world.getTileEntity(x, y, z) instanceof TileEntityCondenserMk3) {
-			TileEntityCondenserMk3 tile = (TileEntityCondenserMk3)world.getTileEntity(x, y, z);
-			tile.storeAEGUCoord(this, xCoord, yCoord, zCoord);
-		}
-	}
-
-	public boolean notifyBreak(World world, int xCoord, int yCoord, int zCoord) {
-		xMK3 = "";yMK3 = "";zMK3 = "";
-
-		for (int x = xCoord - 1; x <= xCoord + 1; x++) {
-			for (int y = yCoord - 1; y <= yCoord + 1; y++) {
-				for (int z = zCoord - 1; z <= zCoord + 1; z++) {
-					if (world.getBlock(x, y, z) instanceof BlockCondenserMk3 && world.getTileEntity(x, y, z) instanceof TileEntityCondenserMk3) {
-						TileEntityCondenserMk3 tile = (TileEntityCondenserMk3)world.getTileEntity(x, y, z);
-						if (tile.destoreAEGUCoord(this, xCoord, yCoord, zCoord) == true) {
-							return true;
-						}
-					}
-				}
+		public static EnumAEGUEXTier fromMeta(int meta) {
+			if(meta < 0 || meta > values().length) {
+				meta = 0;
 			}
+			return aeguexTiers[meta];
 		}
-		if (xMK3 != "" && yMK3 != "" && zMK3 != "") {
-			return false;
+
+		public int getMeta() {
+			return meta;
 		}
-		return false;
-	}
 
-	public boolean openMK3GUI(World world, int xCoord, int yCoord, int zCoord, EntityPlayer player) {
-		xMK3 = "";yMK3 = "";zMK3 = "";
-
-		for (int x = xCoord - 1; x <= xCoord + 1; x++) {
-			for (int y = yCoord - 1; y <= yCoord + 1; y++) {
-				for (int z = zCoord - 1; z <= zCoord + 1; z++) {
-					if (world.getBlock(x, y, z) instanceof BlockCondenserMk3 && world.getTileEntity(x, y, z) instanceof TileEntityCondenserMk3) {
-						TileEntityCondenserMk3 tile = (TileEntityCondenserMk3)world.getTileEntity(x, y, z);
-						if (tile.checkStore(xCoord, yCoord, zCoord) != -1) {
-							if (tile.isGenerate)
-								player.openGui(PEEXCore.instance, 1, world, x, y, z);
-							return true;
-						}
-					}
-				}
-			}
+		public int getTier() {
+			return tier;
 		}
-		return false;
-	}
 
-	public boolean isGenerate() {
-		return this.isGenerate;
-	}
+		public String getName() {
+			return name;
+		}
 
-	public int getTier() {
-		return this.tier;
+		public long getGenerateEmc() {
+			return generateEmc;
+		}
 	}
 }
