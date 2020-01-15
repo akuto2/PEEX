@@ -1,110 +1,133 @@
 package Akuto2.blocks;
 
-import java.util.Random;
-
 import Akuto2.ObjHandlerPEEX;
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.properties.PropertyEnum;
-import net.minecraft.block.state.BlockStateContainer;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumBlockRenderType;
-import net.minecraft.util.IStringSerializable;
+import Akuto2.PEEXCore;
+import Akuto2.tiles.TileEntityCondenserMk3;
+import Akuto2.utils.Constants;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
-public class BlockAEGUEX extends Block{
+public class BlockAEGUEX extends BlockAEGU{
 
-	public static final PropertyEnum<EnumAEGUEXTier> TIER = PropertyEnum.create("tier", EnumAEGUEXTier.class);
-	protected boolean isGenerate;
-	String xMK3 = "", yMK3 = "", zMK3 = "";
+	public BlockAEGUEX(int tier, boolean isGenerate) {
+		super(tier, isGenerate);
 
-	public BlockAEGUEX(boolean isGenerate) {
-		super(Material.GRASS);
-		setUnlocalizedName("AEGUEX");
-		setHardness(0.3f);
-		setLightLevel(1.0f);
+		setUnlocalizedName("AEGUEX_MK" + tier);
 	}
 
 	@Override
-	public int damageDropped(IBlockState state) {
-		return state.getValue(TIER).getMeta();
+	public void changeGenerate(World world, int x, int y, int z) {
+		switch(tier) {
+		case 1:
+			if(isGenerate) {
+				world.setBlockState(new BlockPos(x, y, z), ObjHandlerPEEX.aeguEXMk1_off.getDefaultState(), 3);
+			} else {
+				world.setBlockState(new BlockPos(x, y, z), ObjHandlerPEEX.aeguEXMk1_on.getDefaultState(), 3);
+			}
+			break;
+		case 2:
+			if(isGenerate) {
+				world.setBlockState(new BlockPos(x, y, z), ObjHandlerPEEX.aeguEXMk2_off.getDefaultState(), 3);
+			} else {
+				world.setBlockState(new BlockPos(x, y, z), ObjHandlerPEEX.aeguEXMk2_on.getDefaultState(), 3);
+			}
+			break;
+		case 3:
+			if(isGenerate) {
+				world.setBlockState(new BlockPos(x, y, z), ObjHandlerPEEX.aeguEXMk3_off.getDefaultState(), 3);
+			} else {
+				world.setBlockState(new BlockPos(x, y, z), ObjHandlerPEEX.aeguEXMk3_on.getDefaultState(), 3);
+			}
+			break;
+		}
+	}
+
+	/**
+	 * 周りのコンデンサーを探す
+	 * AEGUEXはMk3のみを探すように
+	 */
+	@Override
+	public boolean checkCondenser(World world, int xCoord, int yCoord, int zCoord) {
+		String xCon = "";
+		String yCon = "";
+		String zCon = "";
+
+		for(int x = xCoord - 1; x <= xCoord + 1; x++) {
+			for(int y = yCoord - 1; y <= yCoord + 1; y++) {
+				for(int z = zCoord - 1; z <= zCoord + 1; z++) {
+					if(world.getBlockState(new BlockPos(x, y ,z)).getBlock() instanceof BlockCondenserMk3) {
+						if(xCon == "" && yCon == "" && zCon == "") {
+							xCon = String.valueOf(x);
+							yCon = String.valueOf(y);
+							zCon = String.valueOf(z);
+						}
+						else {
+							return false;
+						}
+					}
+				}
+			}
+		}
+		if(xCon != "" && yCon != "" && zCon != "") {
+			return true;
+		}
+
+		return false;
+	}
+
+	/**
+	 * Mk3に自信の存在を通知する
+	 */
+	@Override
+	public void notifyToCondenser(World world, int xCoord, int yCoord, int zCoord) {
+		for(int x = xCoord - 1; x <= xCoord + 1; x++) {
+			for(int y = yCoord - 1; y <= yCoord + 1; y++) {
+				for(int z = zCoord - 1; z <= zCoord + 1; z++) {
+					if(world.getTileEntity(new BlockPos(x, y, z)) instanceof TileEntityCondenserMk3) {
+						TileEntityCondenserMk3 tile = (TileEntityCondenserMk3)world.getTileEntity(new BlockPos(x, y, z));
+						tile.storeAEGUCoord(this, xCoord, yCoord, zCoord);
+					}
+				}
+			}
+		}
 	}
 
 	@Override
-	public int getMetaFromState(IBlockState state) {
-		return state.getValue(TIER).getMeta();
-	}
-
-	@Override
-	public IBlockState getStateFromMeta(int meta) {
-		return getDefaultState().withProperty(TIER, EnumAEGUEXTier.fromMeta(meta));
-	}
-
-	@Override
-	protected BlockStateContainer createBlockState() {
-		return new BlockStateContainer(this, new IProperty[] { TIER });
-	}
-
-	@Override
-	public EnumBlockRenderType getRenderType(IBlockState state) {
-		return EnumBlockRenderType.MODEL;
-	}
-
-	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-		int meta = state.getValue(TIER).getMeta();
-		return new ItemStack(ObjHandlerPEEX.aeguEX_off, 1, meta).getItem();
-	}
-
-	public enum EnumAEGUEXTier implements IStringSerializable{
-		mk1(0, 1, "mk1", 100000),
-		mk2(1, 2, "mk2", 1000000),
-		mk3(2, 3, "mk3", 35000000),
-		mkFinal(3, 0, "final", 10000000000000000L);
-
-		private static EnumAEGUEXTier[] aeguexTiers;
-		private int meta;
-		private int tier;
-		private String name;
-		private long generateEmc;
-
-		static {
-			aeguexTiers = new EnumAEGUEXTier[values().length];
-			for(EnumAEGUEXTier aeguexTier : values()) {
-				aeguexTiers[values().length] = aeguexTier;
+	public boolean notifyBreak(World world, int xCoord, int yCoord, int zCoord) {
+		for(int x = xCoord - 1; x <= xCoord + 1; x++) {
+			for(int y = yCoord - 1; y <= yCoord + 1; y++) {
+				for(int z = zCoord - 1; z <= zCoord + 1; z++) {
+					if(world.getTileEntity(new BlockPos(x, y, z)) instanceof TileEntityCondenserMk3) {
+						TileEntityCondenserMk3 tile = (TileEntityCondenserMk3)world.getTileEntity(new BlockPos(x, y, z));
+						if(tile.destoreAEGUCoord(this, xCoord, yCoord, zCoord)){
+							return true;
+						}
+					}
+				}
 			}
 		}
 
-		private EnumAEGUEXTier(int meta, int tier, String name, long generateEmc) {
-			this.meta = meta;
-			this.tier = tier;
-			this.name = name;
-			this.generateEmc = generateEmc;
-		}
+		return false;
+	}
 
-		public static EnumAEGUEXTier fromMeta(int meta) {
-			if(meta < 0 || meta > values().length) {
-				meta = 0;
+	@Override
+	public boolean openCondenserGui(World world, int xCoord, int yCoord, int zCoord, EntityPlayer player) {
+		for(int x = xCoord - 1; x <= xCoord + 1; x++) {
+			for(int y = yCoord - 1; y <= yCoord + 1; y++) {
+				for(int z = zCoord - 1; z <= zCoord + 1; z++) {
+					if(world.getTileEntity(new BlockPos(x, y, z)) instanceof TileEntityCondenserMk3) {
+						TileEntityCondenserMk3 tile = (TileEntityCondenserMk3)world.getTileEntity(new BlockPos(x, y, z));
+						if(tile.checkStore(xCoord, yCoord, zCoord) != -1) {
+							if(tile.isGenerate)
+								player.openGui(PEEXCore.instance, Constants.CONDENSER_MK3_GUI, world, x, y, z);
+							return true;
+						}
+					}
+				}
 			}
-			return aeguexTiers[meta];
 		}
 
-		public int getMeta() {
-			return meta;
-		}
-
-		public int getTier() {
-			return tier;
-		}
-
-		public String getName() {
-			return name;
-		}
-
-		public long getGenerateEmc() {
-			return generateEmc;
-		}
+		return false;
 	}
 }
