@@ -14,7 +14,7 @@ public class RecipeAEGUMk3 extends ShapedRecipes{
 	public static final int recipeWidth = 3;
 	public static final int recipeHeight = 3;
 	public final ItemStack[] recipeItems;
-	private static ItemStack output = new ItemStack(ObjHandlerPEEX.aeguEXMk3_off);
+	private static ItemStack output = new ItemStack(ObjHandlerPEEX.aeguMk3_off);
 
 	private static final ItemStack fullKleinOmega = new ItemStack(ObjHandler.kleinStars, 1, 5);
 	private static ItemStack mk2 = new ItemStack(ObjHandlerPEEX.aeguMk2_off);
@@ -36,9 +36,9 @@ public class RecipeAEGUMk3 extends ShapedRecipes{
 				if(!(ItemStack.areItemStacksEqual(input, fullKleinOmega) && ItemStack.areItemStackTagsEqual(input, fullKleinOmega))) {
 					return false;
 				}
-				else if(!(ItemStack.areItemsEqual(input, mk2))) {
-					return false;
-				}
+			}
+			else if(!(ItemStack.areItemsEqual(input, mk2))) {
+				return false;
 			}
 		}
 
@@ -60,5 +60,11 @@ public class RecipeAEGUMk3 extends ShapedRecipes{
 		return output;
 	}
 
+	public static ItemStack getKleinStack() {
+		if(KleinStar.getEmc(fullKleinOmega) != EMCHelper.getKleinStarMaxEmc(fullKleinOmega)) {
+			KleinStar.setEmc(fullKleinOmega, EMCHelper.getKleinStarMaxEmc(fullKleinOmega));
+		}
 
+		return fullKleinOmega;
+	}
 }

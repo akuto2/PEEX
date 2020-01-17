@@ -39,6 +39,7 @@ public class PEEXCore{
 		update.checkUpdate();
 		ObjHandlerPEEX.register();
 		proxy.registerModels();
+		proxy.registerRenderers();
 	}
 
 	@EventHandler

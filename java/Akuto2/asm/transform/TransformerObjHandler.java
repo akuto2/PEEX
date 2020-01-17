@@ -7,7 +7,6 @@ import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.Type;
 
-import Akuto2.asm.PEEXCorePlugin;
 import net.minecraft.launchwrapper.IClassTransformer;
 import net.minecraftforge.fml.common.asm.transformers.deobf.FMLDeobfuscatingRemapper;
 
@@ -22,12 +21,10 @@ public class TransformerObjHandler implements IClassTransformer, Opcodes{
 		if(!TARGETCLASSNAME.equals(transformedName))	return basicClass;
 
 		try {
-			PEEXCorePlugin.logger.info("Start ObjHandler Transform");
 			ClassReader cr = new ClassReader(basicClass);
 			ClassWriter cw = new ClassWriter(ClassWriter.COMPUTE_MAXS);
 			cr.accept(new CustomVisitor(name, cw, transformedName), 8);
 			basicClass = cw.toByteArray();
-			PEEXCorePlugin.logger.info("End ObjHandler Transform");
 		}
 		catch(Exception e) {
 			throw new RuntimeException("failed : ObjHandlerTransformer loading", e);
@@ -50,12 +47,10 @@ public class TransformerObjHandler implements IClassTransformer, Opcodes{
 		public MethodVisitor visitMethod(int access, String name, String desc, String signature, String[] exceptions) {
 			// ObjHandlerのフィールド書き換え
 			if(targetMethodName.equals(FMLDeobfuscatingRemapper.INSTANCE.mapMethodName(owner, name, desc))) {
-				PEEXCorePlugin.logger.info("Start [clinit] Transform");
 				return new CustomMethodVisitor(api, super.visitMethod(access, name, desc, signature, exceptions));
 			}
 
 			if(targetMethodName2.equals(FMLDeobfuscatingRemapper.INSTANCE.mapMethodName(owner, name, desc))) {
-				PEEXCorePlugin.logger.info("Start [register] Transform");
 				return new CustomMethodVisitor2(api, super.visitMethod(access, name, desc, signature, exceptions));
 			}
 
@@ -75,7 +70,6 @@ public class TransformerObjHandler implements IClassTransformer, Opcodes{
 		public void visitFieldInsn(int opcode, String owner, String name, String desc) {
 			// CondenserMk2PEEXに変更
 			if(targetFieldName.equals(name)) {
-				PEEXCorePlugin.logger.info("Start [condenserMk2] Transform");
 				mv.visitTypeInsn(NEW, "Akuto2/blocks/BlockCondenserMk2PEEX");
 				mv.visitInsn(DUP);
 				mv.visitMethodInsn(INVOKESPECIAL, "Akuto2/blocks/BlockCondenserMk2PEEX", "<init>", "()V", false);

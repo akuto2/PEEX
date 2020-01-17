@@ -1,10 +1,14 @@
 package Akuto2.blocks;
 
+import java.util.Random;
+
 import Akuto2.ObjHandlerPEEX;
 import Akuto2.PEEXCore;
 import Akuto2.tiles.TileEntityCondenserMk3;
 import Akuto2.utils.Constants;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -14,6 +18,21 @@ public class BlockAEGUEX extends BlockAEGU{
 		super(tier, isGenerate);
 
 		setUnlocalizedName("AEGUEX_MK" + tier);
+	}
+
+	@Override
+	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
+		switch(tier) {
+		case 1:
+			return Item.getItemFromBlock(ObjHandlerPEEX.aeguEXMk1_off);
+		case 2:
+			return Item.getItemFromBlock(ObjHandlerPEEX.aeguEXMk2_off);
+		case 3:
+			return Item.getItemFromBlock(ObjHandlerPEEX.aeguEXMk3_off);
+		case 4:
+			return Item.getItemFromBlock(ObjHandlerPEEX.aeguEXFinal_off);
+		}
+		return null;
 	}
 
 	@Override
@@ -40,6 +59,12 @@ public class BlockAEGUEX extends BlockAEGU{
 				world.setBlockState(new BlockPos(x, y, z), ObjHandlerPEEX.aeguEXMk3_on.getDefaultState(), 3);
 			}
 			break;
+		case 4:
+			if(isGenerate) {
+				world.setBlockState(new BlockPos(x, y, z), ObjHandlerPEEX.aeguEXFinal_off.getDefaultState(), 3);
+			} else {
+				world.setBlockState(new BlockPos(x, y, z), ObjHandlerPEEX.aeguEXFinal_on.getDefaultState(), 3);
+			}
 		}
 	}
 

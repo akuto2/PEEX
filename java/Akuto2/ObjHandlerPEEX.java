@@ -4,12 +4,23 @@ import Akuto2.blocks.BlockAEGU;
 import Akuto2.blocks.BlockAEGUEX;
 import Akuto2.blocks.BlockCollector;
 import Akuto2.blocks.BlockCondenserMk3;
+import Akuto2.blocks.BlockRelay;
 import Akuto2.recipes.RecipeAEGUMk3;
+import Akuto2.tiles.TileEntityCollectorFinal;
+import Akuto2.tiles.TileEntityCollectorMk10;
 import Akuto2.tiles.TileEntityCollectorMk4;
 import Akuto2.tiles.TileEntityCollectorMk5;
+import Akuto2.tiles.TileEntityCollectorMk6;
+import Akuto2.tiles.TileEntityCollectorMk7;
+import Akuto2.tiles.TileEntityCollectorMk8;
+import Akuto2.tiles.TileEntityCollectorMk9;
+import Akuto2.tiles.TileEntityCondenserMk3;
 import Akuto2.utils.PEEXConfig;
 import lib.utils.Register;
 import moze_intel.projecte.gameObjs.ObjHandler;
+import moze_intel.projecte.gameObjs.tiles.TileEntityRelayFinal;
+import moze_intel.projecte.gameObjs.tiles.TileEntityRelayMk4;
+import moze_intel.projecte.gameObjs.tiles.TileEntityRelayMk5;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -69,21 +80,6 @@ public class ObjHandlerPEEX {
 		collectorMk4 = new BlockCollector(4);
 		collectorMk5 = new BlockCollector(5);
 
-		// PEEX
-		aeguEXMk1_off = new BlockAEGUEX(1, false);
-		aeguEXMk1_on = new BlockAEGUEX(1, true);
-		aeguEXMk2_off = new BlockAEGUEX(2, false);
-		aeguEXMk2_on = new BlockAEGUEX(2, true);
-		aeguEXMk3_off = new BlockAEGUEX(3, false);
-		aeguEXMk3_on = new BlockAEGUEX(3, true);
-		condenserMk3 = new BlockCondenserMk3();
-		collectorMk6 = new BlockCollector(6);
-		collectorMk7 = new BlockCollector(7);
-		collectorMk8 = new BlockCollector(8);
-		collectorMk9 = new BlockCollector(9);
-		collectorMk10 = new BlockCollector(10);
-		collectorFinal = new BlockCollector(99);
-
 		register.register(aeguMk1_off, new ItemBlock(aeguMk1_off), "aegu/aegumk1_off");
 		register.register(aeguMk1_on, new ItemBlock(aeguMk1_on), "aegu/aegumk1_on", false);
 		register.register(aeguMk2_off, new ItemBlock(aeguMk2_off), "aegu/aegumk2_off");
@@ -95,6 +91,56 @@ public class ObjHandlerPEEX {
 
 		GameRegistry.registerTileEntity(TileEntityCollectorMk4.class, "CollectorMk4Tile");
 		GameRegistry.registerTileEntity(TileEntityCollectorMk5.class, "CollectorMk5Tile");
+
+		// PEEX
+		aeguEXMk1_off = new BlockAEGUEX(1, false);
+		aeguEXMk1_on = new BlockAEGUEX(1, true);
+		aeguEXMk2_off = new BlockAEGUEX(2, false);
+		aeguEXMk2_on = new BlockAEGUEX(2, true);
+		aeguEXMk3_off = new BlockAEGUEX(3, false);
+		aeguEXMk3_on = new BlockAEGUEX(3, true);
+		aeguEXFinal_off = new BlockAEGUEX(4, false);
+		aeguEXFinal_on = new BlockAEGUEX(4, true);
+		condenserMk3 = new BlockCondenserMk3();
+		collectorMk6 = new BlockCollector(6);
+		collectorMk7 = new BlockCollector(7);
+		collectorMk8 = new BlockCollector(8);
+		collectorMk9 = new BlockCollector(9);
+		collectorMk10 = new BlockCollector(10);
+		collectorFinal = new BlockCollector(99);
+		relayMk4 = new BlockRelay(4);
+		relayMk5 = new BlockRelay(5);
+		relayFinal = new BlockRelay(99);
+
+		register.register(aeguEXMk1_off, new ItemBlock(aeguEXMk1_off), "aegu/aeguexmk1_off");
+		register.register(aeguEXMk1_on, new ItemBlock(aeguEXMk1_on), "aegu/aeguexmk1_on", false);
+		register.register(aeguEXMk2_off, new ItemBlock(aeguEXMk2_off), "aegu/aeguexmk2_off");
+		register.register(aeguEXMk2_on, new ItemBlock(aeguEXMk2_on), "aegu/aeguexmk2_on", false);
+		register.register(aeguEXMk3_off, new ItemBlock(aeguEXMk3_off), "aegu/aeguexmk3_off");
+		register.register(aeguEXMk3_on, new ItemBlock(aeguEXMk3_on), "aegu/aeguexmk3_on", false);
+		register.register(aeguEXFinal_off, new ItemBlock(aeguEXFinal_off), "aegu/aeguexfinal_off");
+		register.register(aeguEXFinal_on, new ItemBlock(aeguEXFinal_on), "aegu/aeguexfinal_on", false);
+		register.register(condenserMk3, new ItemBlock(condenserMk3), "condenser_mk3");
+		register.register(collectorMk6, new ItemBlock(collectorMk6), "collectors/collectormk6");
+		register.register(collectorMk7, new ItemBlock(collectorMk7), "collectors/collectormk7");
+		register.register(collectorMk8, new ItemBlock(collectorMk8), "collectors/collectormk8");
+		register.register(collectorMk9, new ItemBlock(collectorMk9), "collectors/collectormk9");
+		register.register(collectorMk10, new ItemBlock(collectorMk10), "collectors/collectormk10");
+		register.register(collectorFinal, new ItemBlock(collectorFinal), "collectors/collector_final");
+		register.register(relayMk4, new ItemBlock(relayMk4), "relays/relaymk4");
+		register.register(relayMk5, new ItemBlock(relayMk5), "relays/relaymk5");
+		register.register(relayFinal, new ItemBlock(relayFinal), "relays/relay_final");
+
+		GameRegistry.registerTileEntity(TileEntityCondenserMk3.class, "CondenserMk3Tile");
+		GameRegistry.registerTileEntity(TileEntityCollectorMk6.class, "CollectorMk6Tile");
+		GameRegistry.registerTileEntity(TileEntityCollectorMk7.class, "CollectorMk7Tile");
+		GameRegistry.registerTileEntity(TileEntityCollectorMk8.class, "CollectorMk8Tile");
+		GameRegistry.registerTileEntity(TileEntityCollectorMk9.class, "CollectorMk9Tile");
+		GameRegistry.registerTileEntity(TileEntityCollectorMk10.class, "CollectorMk10Tile");
+		GameRegistry.registerTileEntity(TileEntityCollectorFinal.class, "CollectorFinalTile");
+		GameRegistry.registerTileEntity(TileEntityRelayMk4.class, "RelayMk4Tile");
+		GameRegistry.registerTileEntity(TileEntityRelayMk5.class, "RelayMk5Tile");
+		GameRegistry.registerTileEntity(TileEntityRelayFinal.class, "RelayFinalTile");
 	}
 
 	/**

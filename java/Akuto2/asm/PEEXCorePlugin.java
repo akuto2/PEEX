@@ -11,7 +11,7 @@ public class PEEXCorePlugin implements IFMLLoadingPlugin {
 
 	@Override
 	public String[] getASMTransformerClass() {
-		return new String[] {"Akuto2.asm.transform.TransformerObjHandler", "Akuto2.asm.transform.TransformerCondenserMk2Texture", "Akuto2.asm.transform.TransformerCondenserContainer"};
+		return new String[] {"Akuto2.asm.transform.TransformerObjHandler", "Akuto2.asm.transform.TransformerCondenserContainer"};
 	}
 
 	@Override

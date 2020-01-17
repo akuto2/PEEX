@@ -1,5 +1,6 @@
 package Akuto2.gui;
 
+import Akuto2.gui.container.ContainerCollectorFinal;
 import Akuto2.gui.container.ContainerCollectorMk10;
 import Akuto2.gui.container.ContainerCollectorMk4;
 import Akuto2.gui.container.ContainerCollectorMk5;
@@ -8,6 +9,10 @@ import Akuto2.gui.container.ContainerCollectorMk7;
 import Akuto2.gui.container.ContainerCollectorMk8;
 import Akuto2.gui.container.ContainerCollectorMk9;
 import Akuto2.gui.container.ContainerCondenserMk3;
+import Akuto2.gui.container.ContainerRelayFinal;
+import Akuto2.gui.container.ContainerRelayMk4;
+import Akuto2.gui.container.ContainerRelayMk5;
+import Akuto2.tiles.TileEntityCollectorFinal;
 import Akuto2.tiles.TileEntityCollectorMk10;
 import Akuto2.tiles.TileEntityCollectorMk4;
 import Akuto2.tiles.TileEntityCollectorMk5;
@@ -17,6 +22,9 @@ import Akuto2.tiles.TileEntityCollectorMk8;
 import Akuto2.tiles.TileEntityCollectorMk9;
 import Akuto2.tiles.TileEntityCondenserMk3;
 import Akuto2.utils.Constants;
+import moze_intel.projecte.gameObjs.tiles.TileEntityRelayFinal;
+import moze_intel.projecte.gameObjs.tiles.TileEntityRelayMk4;
+import moze_intel.projecte.gameObjs.tiles.TileEntityRelayMk5;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
@@ -64,6 +72,20 @@ public class GuiHandler implements IGuiHandler{
 				return new GuiCollectorMk10(player.inventory, (TileEntityCollectorMk10)tile);
 			break;
 		case Constants.COLLECTOR_FINAL_GUI:
+			if(tile instanceof TileEntityCollectorFinal)
+				return new GuiCollectorFinal(player.inventory, (TileEntityCollectorFinal)tile);
+			break;
+		case Constants.RELAY_MK4_GUI:
+			if(tile instanceof TileEntityRelayMk4)
+				return new GuiRelayMk4(player.inventory, (TileEntityRelayMk4)tile);
+			break;
+		case Constants.RELAY_MK5_GUI:
+			if(tile instanceof TileEntityRelayMk5)
+				return new GuiRelayMk5(player.inventory, (TileEntityRelayMk5)tile);
+			break;
+		case Constants.RELAY_FINAL_GUI:
+			if(tile instanceof TileEntityRelayFinal)
+				return new GuiRelayFinal(player.inventory, (TileEntityRelayFinal)tile);
 			break;
 		}
 		return null;
@@ -108,6 +130,20 @@ public class GuiHandler implements IGuiHandler{
 				return new ContainerCollectorMk10(player.inventory, (TileEntityCollectorMk10)tile);
 			break;
 		case Constants.COLLECTOR_FINAL_GUI:
+			if(tile instanceof TileEntityCollectorFinal)
+				return new ContainerCollectorFinal(player.inventory, (TileEntityCollectorFinal)tile);
+			break;
+		case Constants.RELAY_MK4_GUI:
+			if(tile instanceof TileEntityRelayMk4)
+				return new ContainerRelayMk4(player.inventory, (TileEntityRelayMk4)tile);
+			break;
+		case Constants.RELAY_MK5_GUI:
+			if(tile instanceof TileEntityRelayMk5)
+				return new ContainerRelayMk5(player.inventory, (TileEntityRelayMk5)tile);
+			break;
+		case Constants.RELAY_FINAL_GUI:
+			if(tile instanceof TileEntityRelayFinal)
+				return new ContainerRelayFinal(player.inventory, (TileEntityRelayFinal)tile);
 			break;
 		}
 		return null;

@@ -3,7 +3,9 @@ package Akuto2.blocks;
 import Akuto2.PEEXCore;
 import Akuto2.utils.Constants;
 import moze_intel.projecte.gameObjs.blocks.Relay;
+import moze_intel.projecte.gameObjs.tiles.TileEntityRelayFinal;
 import moze_intel.projecte.gameObjs.tiles.TileEntityRelayMk4;
+import moze_intel.projecte.gameObjs.tiles.TileEntityRelayMk5;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -50,6 +52,10 @@ public class BlockRelay extends Relay{
 		switch(tier) {
 		case 4:
 			return new TileEntityRelayMk4();
+		case 5:
+			return new TileEntityRelayMk5();
+		case 99:
+			return new TileEntityRelayFinal();
 		default:
 			return null;
 		}

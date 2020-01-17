@@ -21,7 +21,13 @@ public class BlockCondenserMk3 extends BlockCondenserMk2PEEX {
 
 	@Override
 	public TileEntity createTileEntity(World world, IBlockState state) {
-		return new TileEntityCondenserMk3();
+		TileEntity tile = new TileEntityCondenserMk3();
+
+		if(!world.isRemote) {
+			((TileEntityCondenserMk3)tile).checkAroundAEGU(world, x, y, z);
+		}
+
+		return tile;
 	}
 
 
