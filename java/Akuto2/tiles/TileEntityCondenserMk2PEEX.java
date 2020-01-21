@@ -94,8 +94,6 @@ public class TileEntityCondenserMk2PEEX extends CondenserMK2Tile {
 	 * アイテムを隣接しているインベントリに搬出する
 	 */
 	private void pushToInventories() {
-		int iSide = 0;
-
 		for(EnumFacing face : EnumFacing.VALUES) {
 			if(face.getFrontOffsetY() > 0) {
 				continue;

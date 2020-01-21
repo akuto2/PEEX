@@ -8,10 +8,12 @@ import Akuto2.gui.container.ContainerCollectorMk6;
 import Akuto2.gui.container.ContainerCollectorMk7;
 import Akuto2.gui.container.ContainerCollectorMk8;
 import Akuto2.gui.container.ContainerCollectorMk9;
+import Akuto2.gui.container.ContainerCondenserGrade0;
 import Akuto2.gui.container.ContainerCondenserMk3;
 import Akuto2.gui.container.ContainerRelayFinal;
 import Akuto2.gui.container.ContainerRelayMk4;
 import Akuto2.gui.container.ContainerRelayMk5;
+import Akuto2.tiles.TIleEntityCondenserGrade0;
 import Akuto2.tiles.TileEntityCollectorFinal;
 import Akuto2.tiles.TileEntityCollectorMk10;
 import Akuto2.tiles.TileEntityCollectorMk4;
@@ -42,6 +44,8 @@ public class GuiHandler implements IGuiHandler{
 				return new GuiCondenserMk3(player.inventory, (TileEntityCondenserMk3)tile);
 			break;
 		case Constants.CONDENSER_GRADE_0_GUI:
+			if(tile instanceof TIleEntityCondenserGrade0)
+				return new GuiCondenserGrade0(player.inventory, (TIleEntityCondenserGrade0)tile);
 			break;
 		case Constants.COLLECTOR_MK4_GUI:
 			if(tile instanceof TileEntityCollectorMk4)
@@ -100,6 +104,8 @@ public class GuiHandler implements IGuiHandler{
 				return new ContainerCondenserMk3(player.inventory, (TileEntityCondenserMk3)tile);
 			break;
 		case Constants.CONDENSER_GRADE_0_GUI:
+			if(tile instanceof TIleEntityCondenserGrade0)
+				return new ContainerCondenserGrade0(player.inventory, (TIleEntityCondenserGrade0)tile);
 			break;
 		case Constants.COLLECTOR_MK4_GUI:
 			if(tile instanceof TileEntityCollectorMk4)

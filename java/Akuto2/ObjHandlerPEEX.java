@@ -3,9 +3,14 @@ package Akuto2;
 import Akuto2.blocks.BlockAEGU;
 import Akuto2.blocks.BlockAEGUEX;
 import Akuto2.blocks.BlockCollector;
+import Akuto2.blocks.BlockCondenserGrade0;
 import Akuto2.blocks.BlockCondenserMk3;
+import Akuto2.blocks.BlockMatter;
 import Akuto2.blocks.BlockRelay;
+import Akuto2.items.ItemBlockMatter;
+import Akuto2.items.ItemMatter;
 import Akuto2.recipes.RecipeAEGUMk3;
+import Akuto2.tiles.TIleEntityCondenserGrade0;
 import Akuto2.tiles.TileEntityCollectorFinal;
 import Akuto2.tiles.TileEntityCollectorMk10;
 import Akuto2.tiles.TileEntityCollectorMk4;
@@ -22,6 +27,7 @@ import moze_intel.projecte.gameObjs.tiles.TileEntityRelayFinal;
 import moze_intel.projecte.gameObjs.tiles.TileEntityRelayMk4;
 import moze_intel.projecte.gameObjs.tiles.TileEntityRelayMk5;
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -102,6 +108,7 @@ public class ObjHandlerPEEX {
 		aeguEXFinal_off = new BlockAEGUEX(4, false);
 		aeguEXFinal_on = new BlockAEGUEX(4, true);
 		condenserMk3 = new BlockCondenserMk3();
+		condenserGrade0 = new BlockCondenserGrade0();
 		collectorMk6 = new BlockCollector(6);
 		collectorMk7 = new BlockCollector(7);
 		collectorMk8 = new BlockCollector(8);
@@ -111,6 +118,8 @@ public class ObjHandlerPEEX {
 		relayMk4 = new BlockRelay(4);
 		relayMk5 = new BlockRelay(5);
 		relayFinal = new BlockRelay(99);
+		matterBlock = new BlockMatter();
+		matter = new ItemMatter();
 
 		register.register(aeguEXMk1_off, new ItemBlock(aeguEXMk1_off), "aegu/aeguexmk1_off");
 		register.register(aeguEXMk1_on, new ItemBlock(aeguEXMk1_on), "aegu/aeguexmk1_on", false);
@@ -121,6 +130,7 @@ public class ObjHandlerPEEX {
 		register.register(aeguEXFinal_off, new ItemBlock(aeguEXFinal_off), "aegu/aeguexfinal_off");
 		register.register(aeguEXFinal_on, new ItemBlock(aeguEXFinal_on), "aegu/aeguexfinal_on", false);
 		register.register(condenserMk3, new ItemBlock(condenserMk3), "condenser_mk3");
+		register.register(condenserGrade0, new ItemBlock(condenserGrade0), "condenser_grade0");
 		register.register(collectorMk6, new ItemBlock(collectorMk6), "collectors/collectormk6");
 		register.register(collectorMk7, new ItemBlock(collectorMk7), "collectors/collectormk7");
 		register.register(collectorMk8, new ItemBlock(collectorMk8), "collectors/collectormk8");
@@ -130,8 +140,11 @@ public class ObjHandlerPEEX {
 		register.register(relayMk4, new ItemBlock(relayMk4), "relays/relaymk4");
 		register.register(relayMk5, new ItemBlock(relayMk5), "relays/relaymk5");
 		register.register(relayFinal, new ItemBlock(relayFinal), "relays/relay_final");
+		register.register(matterBlock, new ItemBlockMatter(matterBlock), "matterblock");
+		register.register(matter, "matter");
 
 		GameRegistry.registerTileEntity(TileEntityCondenserMk3.class, "CondenserMk3Tile");
+		GameRegistry.registerTileEntity(TIleEntityCondenserGrade0.class, "CondenserGrade0Tile");
 		GameRegistry.registerTileEntity(TileEntityCollectorMk6.class, "CollectorMk6Tile");
 		GameRegistry.registerTileEntity(TileEntityCollectorMk7.class, "CollectorMk7Tile");
 		GameRegistry.registerTileEntity(TileEntityCollectorMk8.class, "CollectorMk8Tile");
@@ -158,11 +171,32 @@ public class ObjHandlerPEEX {
 		GameRegistry.addRecipe(new RecipeAEGUMk3());
 		RecipeSorter.register("Ultimate AEGU Recipes", RecipeAEGUMk3.class, Category.SHAPED, "");
 
-		if(PEEXConfig.isFinalType) {
+		// PEEX
+		GameRegistry.addRecipe(new ItemStack(matter, 1, 0), "ddd", "rrr", "ddd", 'd', new ItemStack(ObjHandler.matter, 1, 0), 'r', new ItemStack(ObjHandler.matter, 1, 1));
+		GameRegistry.addRecipe(new ItemStack(matter, 1, 1), "bbb", "brb", "bbb", 'b', new ItemStack(matter, 1, 0), 'r', new ItemStack(ObjHandler.matter, 1, 1));
+		for(int i = 0; i < 2; i++) {
+			GameRegistry.addRecipe(new ItemStack(matterBlock, 1, i), "mmm", "mmm", "mmm", 'm', new ItemStack(matter, 1, i));
+			GameRegistry.addRecipe(new ItemStack(matter, 9, i), "b", 'b', new ItemStack(matterBlock, 1, i));
+		}
+		GameRegistry.addRecipe(new ItemStack(collectorMk6), "ccc", "crc", "ccc", 'c', collectorMk5, 'r', new ItemStack(ObjHandler.matter, 1, 1));
+		GameRegistry.addRecipe(new ItemStack(collectorMk7), "ccc", "crc", "ccc", 'c', collectorMk6, 'r', new ItemStack(ObjHandler.matter, 1, 1));
+		GameRegistry.addRecipe(new ItemStack(collectorMk8), "ccc", "cbc", "ccc", 'c', collectorMk7, 'b', new ItemStack(matter, 1, 0));
+		GameRegistry.addRecipe(new ItemStack(collectorMk9), "ccc", "cbc", "ccc", 'c', collectorMk8, 'b', new ItemStack(matter, 1, 0));
+		GameRegistry.addRecipe(new ItemStack(collectorMk10), "ccc", "cac", "ccc", 'c', collectorMk9, 'a', new ItemStack(matter, 1, 1));
+		GameRegistry.addRecipe(new ItemStack(relayMk4), "rrr", "rbr", "rrr", 'r', ObjHandler.relayMK3, 'b', new ItemStack(matter, 1, 0));
+		GameRegistry.addRecipe(new ItemStack(relayMk5), "rrr", "rar", "rrr", 'r', relayMk4, 'a', new ItemStack(matter, 1, 1));
+		GameRegistry.addRecipe(new ItemStack(aeguEXMk1_off), "aaa", "aba", "aaa", 'a', aeguMk3_off, 'b', new ItemStack(matter, 1, 0));
+		GameRegistry.addRecipe(new ItemStack(aeguEXMk2_off), "aaa", "aca", "aaa", 'a', aeguEXMk1_off, 'c', new ItemStack(matter, 1, 1));
+		GameRegistry.addRecipe(new ItemStack(aeguEXMk3_off), "aaa", "aca", "aaa", 'a', aeguEXMk2_off, 'c', new ItemStack(matterBlock, 1, 1));
+		GameRegistry.addRecipe(new ItemStack(condenserMk3), "aba", "bcb", "aba", 'a', new ItemStack(matter, 1, 1), 'b', new ItemStack(matter, 1, 0), 'c', ObjHandler.condenserMk2);
 
+		if(PEEXConfig.isFinalType) {
+			GameRegistry.addRecipe(new ItemStack(collectorFinal), "bcb", "cmc", "bcb", 'b', Blocks.BEDROCK, 'c', collectorMk10, 'm', new ItemStack(matterBlock, 1, 1));
+			GameRegistry.addRecipe(new ItemStack(relayFinal), "brb", "bcb", "brb", 'b', Blocks.BEDROCK, 'r', relayMk5, 'c', new ItemStack(matterBlock, 1, 1));
+			GameRegistry.addRecipe(new ItemStack(aeguEXFinal_off), "bab", "aca", "bab", 'b', Blocks.BEDROCK, 'a', aeguEXMk3_off, 'c', new ItemStack(matterBlock, 1, 1));
 		}
 		if(PEEXConfig.isGradeZero) {
-
+			GameRegistry.addRecipe(new ItemStack(condenserGrade0), "aba", "lcr", "aoa", 'a', aeguEXFinal_off, 'b', new ItemStack(matterBlock, 1, 0), 'l', collectorFinal, 'r', relayFinal, 'c', condenserMk3, 'o', new ItemStack(matterBlock, 1, 1));
 		}
 	}
 }

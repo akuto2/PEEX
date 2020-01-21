@@ -1,7 +1,10 @@
 package Akuto2.proxies;
 
 import Akuto2.ObjHandlerPEEX;
+import Akuto2.blocks.BlockMatter.EnumMatterType;
+import Akuto2.rendering.RendererCondenserGrade0;
 import Akuto2.rendering.RendererCondenserMk3;
+import Akuto2.tiles.TIleEntityCondenserGrade0;
 import Akuto2.tiles.TileEntityCondenserMk3;
 import moze_intel.projecte.api.state.PEStateProps;
 import net.minecraft.block.Block;
@@ -27,6 +30,7 @@ public class ClientProxy extends CommonProxy{
 		registerBlock(ObjHandlerPEEX.collectorMk5);
 
 		ModelLoader.setCustomStateMapper(ObjHandlerPEEX.condenserMk3, (new StateMap.Builder()).ignore(PEStateProps.FACING).build());
+		ModelLoader.setCustomStateMapper(ObjHandlerPEEX.condenserGrade0, (new StateMap.Builder()).ignore(PEStateProps.FACING).build());
 
 		registerBlock(ObjHandlerPEEX.aeguEXMk1_off);
 		registerBlock(ObjHandlerPEEX.aeguEXMk1_on);
@@ -37,6 +41,7 @@ public class ClientProxy extends CommonProxy{
 		registerBlock(ObjHandlerPEEX.aeguEXFinal_off);
 		registerBlock(ObjHandlerPEEX.aeguEXFinal_on);
 		registerBlock(ObjHandlerPEEX.condenserMk3);
+		registerBlock(ObjHandlerPEEX.condenserGrade0);
 		registerBlock(ObjHandlerPEEX.collectorMk4);
 		registerBlock(ObjHandlerPEEX.collectorMk5);
 		registerBlock(ObjHandlerPEEX.collectorMk6);
@@ -48,11 +53,14 @@ public class ClientProxy extends CommonProxy{
 		registerBlock(ObjHandlerPEEX.relayMk4);
 		registerBlock(ObjHandlerPEEX.relayMk5);
 		registerBlock(ObjHandlerPEEX.relayFinal);
+
+		registerMatter();
 	}
 
 	@Override
 	public void registerRenderers() {
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCondenserMk3.class, new RendererCondenserMk3());
+		ClientRegistry.bindTileEntitySpecialRenderer(TIleEntityCondenserGrade0.class, new RendererCondenserGrade0());
 	}
 
 	private void registerBlock(Block block) {
@@ -67,6 +75,16 @@ public class ClientProxy extends CommonProxy{
 	private void registerItem(Item item, int meta) {
 		String name = ForgeRegistries.ITEMS.getKey(item).toString();
 		ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(name, "inventory"));
+	}
+
+	private void registerMatter() {
+		for(EnumMatterType e : EnumMatterType.values()) {
+			ModelLoader.setCustomModelResourceLocation(ObjHandlerPEEX.matter, e.ordinal(), new ModelResourceLocation("peex:" + e.getName(), "inventory"));
+
+			String name = ForgeRegistries.BLOCKS.getKey(ObjHandlerPEEX.matterBlock).toString();
+			ModelLoader.registerItemVariants(Item.getItemFromBlock(ObjHandlerPEEX.matterBlock), new ModelResourceLocation(name, "tier=" + e.getName()));
+			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(ObjHandlerPEEX.matterBlock), e.ordinal(), new ModelResourceLocation(name, "tier=" + e.getName()));
+		}
 	}
 
 	@Override
