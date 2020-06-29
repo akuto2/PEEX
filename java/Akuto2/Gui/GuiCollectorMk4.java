@@ -2,22 +2,22 @@ package Akuto2.gui;
 
 import org.lwjgl.opengl.GL11;
 
-import Akuto2.gui.container.ContainerCollectorMk9;
-import Akuto2.tiles.TileEntityCollectorMk9;
+import Akuto2.gui.container.ContainerCollectorMk4;
+import Akuto2.tiles.TileEntityCollectorMk4;
 import moze_intel.projecte.utils.Constants;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 
-public class GuiCollectorMk9 extends GuiContainer{
+public class GuiCollectorMk4 extends GuiContainer{
 	private static final ResourceLocation texture = new ResourceLocation("peex", "textures/gui/collector3.png");
-	private final TileEntityCollectorMk9 tile;
-	private final ContainerCollectorMk9 container;
+	private final TileEntityCollectorMk4 tile;
+	private final ContainerCollectorMk4 container;
 
-	public GuiCollectorMk9(InventoryPlayer player, TileEntityCollectorMk9 tile) {
-		super(new ContainerCollectorMk9(player, tile));
-		container = ((ContainerCollectorMk9)inventorySlots);
+	public GuiCollectorMk4(InventoryPlayer player, TileEntityCollectorMk4 tile) {
+		super(new ContainerCollectorMk4(player, tile));
+		container = ((ContainerCollectorMk4)inventorySlots);
 		this.tile = tile;
 		xSize = 218;
 		ySize = 165;
