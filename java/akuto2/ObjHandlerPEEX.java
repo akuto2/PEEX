@@ -2,6 +2,7 @@ package akuto2;
 
 import akuto2.blocks.BlockAEGU;
 import akuto2.blocks.BlockCollector;
+import akuto2.recipes.RecipeAEGUMk3;
 import akuto2.tiles.TileEntityCollectorFinal;
 import akuto2.tiles.TileEntityCollectorMk10;
 import akuto2.tiles.TileEntityCollectorMk4;
@@ -18,9 +19,10 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
-@EventBusSubscriber(modid = "PEEX")
+@EventBusSubscriber(modid = "peex")
 public class ObjHandlerPEEX {
 
 	// PEAAで追加されていたもの
@@ -135,7 +137,9 @@ public class ObjHandlerPEEX {
 	 * レシピの追加
 	 */
 	public static void addRecipes() {
-		// 最終型とグレード0のみ(Configによって追加するかしないか分かれるため)
+		// AEGUMK3(指定のレシピを必要とするため)
+		ForgeRegistries.RECIPES.register(new RecipeAEGUMk3());
+		// 最終型とグレード0(Configによって追加するかしないか分かれるため)
 		// 他はJson
 	}
 }

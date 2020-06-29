@@ -1,5 +1,6 @@
 package akuto2.utils;
 
+import akuto2.ObjHandlerPEEX;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
@@ -14,7 +15,7 @@ public class CreativeTabPEEX extends CreativeTabs{
 	@SideOnly(Side.CLIENT)
 	@Override
 	public ItemStack getTabIconItem() {
-		return null;
+		return new ItemStack(ObjHandlerPEEX.aeguMk1_off);
 	}
 
 	@Override

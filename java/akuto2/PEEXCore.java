@@ -14,11 +14,11 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 
-@Mod(modid = "PEEX", name = "PEEX", version = "3.0.0", dependencies = "required-after:AkutoLib;required-after:ProjectE")
+@Mod(modid = "peex", name = "PEEX", version = "3.0.0", dependencies = "required-after:akutolib;required-after:projecte")
 public class PEEXCore {
-	@Instance("PEEX")
+	@Instance("peex")
 	public static PEEXCore instance;
-	@Metadata("PEEX")
+	@Metadata("peex")
 	public static ModMetadata meta;
 
 	public static UpdateChecker update = null;
@@ -34,6 +34,7 @@ public class PEEXCore {
 	public void Init(FMLInitializationEvent event) {
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
 		ObjHandlerPEEX.register();
+		ObjHandlerPEEX.addRecipes();
 	}
 
 	@EventHandler
