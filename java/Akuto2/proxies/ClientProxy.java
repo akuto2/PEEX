@@ -4,7 +4,7 @@ import Akuto2.ObjHandlerPEEX;
 import Akuto2.blocks.BlockMatter.EnumMatterType;
 import Akuto2.rendering.RendererCondenserGrade0;
 import Akuto2.rendering.RendererCondenserMk3;
-import Akuto2.tiles.TIleEntityCondenserGrade0;
+import Akuto2.tiles.TileEntityCondenserGrade0;
 import Akuto2.tiles.TileEntityCondenserMk3;
 import moze_intel.projecte.api.state.PEStateProps;
 import net.minecraft.block.Block;
@@ -60,7 +60,7 @@ public class ClientProxy extends CommonProxy{
 	@Override
 	public void registerRenderers() {
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCondenserMk3.class, new RendererCondenserMk3());
-		ClientRegistry.bindTileEntitySpecialRenderer(TIleEntityCondenserGrade0.class, new RendererCondenserGrade0());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCondenserGrade0.class, new RendererCondenserGrade0());
 	}
 
 	private void registerBlock(Block block) {

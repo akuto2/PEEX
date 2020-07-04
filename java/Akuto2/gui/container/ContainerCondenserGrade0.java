@@ -1,6 +1,6 @@
 package Akuto2.gui.container;
 
-import Akuto2.tiles.TIleEntityCondenserGrade0;
+import Akuto2.tiles.TileEntityCondenserGrade0;
 import moze_intel.projecte.gameObjs.container.slots.SlotCondenserLock;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -12,9 +12,9 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
 public class ContainerCondenserGrade0 extends Container{
-	public TIleEntityCondenserGrade0 tile;
+	public TileEntityCondenserGrade0 tile;
 
-	public ContainerCondenserGrade0(InventoryPlayer invPlayer, TIleEntityCondenserGrade0 condenser) {
+	public ContainerCondenserGrade0(InventoryPlayer invPlayer, TileEntityCondenserGrade0 condenser) {
 		tile = condenser;
 		tile.numPlayersUsing++;
 		initSlots(invPlayer);

@@ -1,7 +1,7 @@
 package Akuto2.rendering;
 
 import Akuto2.ObjHandlerPEEX;
-import Akuto2.tiles.TIleEntityCondenserGrade0;
+import Akuto2.tiles.TileEntityCondenserGrade0;
 import moze_intel.projecte.api.state.PEStateProps;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.model.ModelChest;
@@ -10,12 +10,12 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 
-public class RendererCondenserGrade0 extends TileEntitySpecialRenderer<TIleEntityCondenserGrade0>{
+public class RendererCondenserGrade0 extends TileEntitySpecialRenderer<TileEntityCondenserGrade0>{
 	private final ResourceLocation texture = new ResourceLocation("peex", "textures/blocks/condenser_grade0.png");
 	private final ModelChest model = new ModelChest();
 
 	@Override
-	public void renderTileEntityAt(TIleEntityCondenserGrade0 condenser, double x, double y, double z, float partialTicks, int destroyStage) {
+	public void renderTileEntityAt(TileEntityCondenserGrade0 condenser, double x, double y, double z, float partialTicks, int destroyStage) {
 		EnumFacing direction = null;
 		if(condenser.getWorld() != null && !condenser.isInvalid()) {
 			IBlockState state = condenser.getWorld().getBlockState(condenser.getPos());

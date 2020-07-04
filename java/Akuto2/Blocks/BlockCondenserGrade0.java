@@ -4,7 +4,7 @@ import java.util.Random;
 
 import Akuto2.ObjHandlerPEEX;
 import Akuto2.PEEXCore;
-import Akuto2.tiles.TIleEntityCondenserGrade0;
+import Akuto2.tiles.TileEntityCondenserGrade0;
 import Akuto2.utils.Constants;
 import moze_intel.projecte.api.state.PEStateProps;
 import moze_intel.projecte.gameObjs.blocks.BlockDirection;
@@ -74,7 +74,7 @@ public class BlockCondenserGrade0 extends BlockDirection{
 
 	@Override
 	public TileEntity createTileEntity(World world, IBlockState state) {
-		return new TIleEntityCondenserGrade0();
+		return new TileEntityCondenserGrade0();
 	}
 
 	@Override

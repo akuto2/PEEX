@@ -10,7 +10,7 @@ import Akuto2.blocks.BlockRelay;
 import Akuto2.items.ItemBlockMatter;
 import Akuto2.items.ItemMatter;
 import Akuto2.recipes.RecipeAEGUMk3;
-import Akuto2.tiles.TIleEntityCondenserGrade0;
+import Akuto2.tiles.TileEntityCondenserGrade0;
 import Akuto2.tiles.TileEntityCollectorFinal;
 import Akuto2.tiles.TileEntityCollectorMk10;
 import Akuto2.tiles.TileEntityCollectorMk4;
@@ -144,7 +144,7 @@ public class ObjHandlerPEEX {
 		register.register(matter, "matter");
 
 		GameRegistry.registerTileEntity(TileEntityCondenserMk3.class, "CondenserMk3Tile");
-		GameRegistry.registerTileEntity(TIleEntityCondenserGrade0.class, "CondenserGrade0Tile");
+		GameRegistry.registerTileEntity(TileEntityCondenserGrade0.class, "CondenserGrade0Tile");
 		GameRegistry.registerTileEntity(TileEntityCollectorMk6.class, "CollectorMk6Tile");
 		GameRegistry.registerTileEntity(TileEntityCollectorMk7.class, "CollectorMk7Tile");
 		GameRegistry.registerTileEntity(TileEntityCollectorMk8.class, "CollectorMk8Tile");
