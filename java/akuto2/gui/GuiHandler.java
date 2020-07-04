@@ -8,6 +8,8 @@ import akuto2.gui.container.ContainerCollectorMk6;
 import akuto2.gui.container.ContainerCollectorMk7;
 import akuto2.gui.container.ContainerCollectorMk8;
 import akuto2.gui.container.ContainerCollectorMk9;
+import akuto2.gui.container.ContainerCondenserGrade0;
+import akuto2.gui.container.ContainerCondenserMk3;
 import akuto2.tiles.TileEntityCollectorFinal;
 import akuto2.tiles.TileEntityCollectorMk10;
 import akuto2.tiles.TileEntityCollectorMk4;
@@ -16,6 +18,8 @@ import akuto2.tiles.TileEntityCollectorMk6;
 import akuto2.tiles.TileEntityCollectorMk7;
 import akuto2.tiles.TileEntityCollectorMk8;
 import akuto2.tiles.TileEntityCollectorMk9;
+import akuto2.tiles.TileEntityCondenserGrade0;
+import akuto2.tiles.TileEntityCondenserMk3;
 import akuto2.utils.Constants;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
@@ -30,8 +34,12 @@ public class GuiHandler implements IGuiHandler{
 		TileEntity tile = world.getTileEntity(new BlockPos(x, y, z));
 		switch(ID) {
 		case Constants.CONDENSER_MK3_GUI:
+			if(tile instanceof TileEntityCondenserMk3)
+				return new GuiCondenserMk3(player.inventory, (TileEntityCondenserMk3)tile);
 			break;
 		case Constants.CONDENSER_GRADE_0_GUI:
+			if(tile instanceof TileEntityCondenserGrade0)
+				return new GuiCondenserGrade0(player.inventory, (TileEntityCondenserGrade0)tile);
 			break;
 		case Constants.COLLECTOR_MK4_GUI:
 			if(tile instanceof TileEntityCollectorMk4)
@@ -80,8 +88,12 @@ public class GuiHandler implements IGuiHandler{
 		TileEntity tile = world.getTileEntity(new BlockPos(x, y, z));
 		switch(ID) {
 		case Constants.CONDENSER_MK3_GUI:
+			if(tile instanceof TileEntityCondenserMk3)
+				return new ContainerCondenserMk3(player.inventory, (TileEntityCondenserMk3)tile);
 			break;
 		case Constants.CONDENSER_GRADE_0_GUI:
+			if(tile instanceof TileEntityCondenserGrade0)
+				return new ContainerCondenserGrade0(player.inventory, (TileEntityCondenserGrade0)tile);
 			break;
 		case Constants.COLLECTOR_MK4_GUI:
 			if(tile instanceof TileEntityCollectorMk4)

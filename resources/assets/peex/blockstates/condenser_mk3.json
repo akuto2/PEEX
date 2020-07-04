@@ -1,0 +1,13 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "textures": {
+      "particle": "peex:blocks/condenser_mk3"
+    },
+    "transform": "forge:default-block"
+  },
+  "variants": {
+    "normal": [{ "model": "projecte:dummy" }],
+    "inventory": [{ "model": "projecte:base_chest", "textures": { "chest": "peex:blocks/condenser_mk3" }}]
+  }
+}

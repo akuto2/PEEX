@@ -2,11 +2,15 @@
     {
         "1.7.10":{
             "version": "1.2.4",
-            "downloadUrl":"https://minecraft.curseforge.com/projects/peex"
+            "downloadUrl":"https://www.curseforge.com/minecraft/mc-mods/peex"
         },
         "1.10.2":{
             "version": "2.0.0",
-            "downloadUrl":"https://minecraft.curseforge.com/projects/peex"
+            "downloadUrl":"https://www.curseforge.com/minecraft/mc-mods/peex"
+        },
+        "1.12.2":{
+            "version": "3.0.0",
+            "downloadUrl":"https://www.curseforge.com/minecraft/mc-mods/peex"
         }
     }
 ]

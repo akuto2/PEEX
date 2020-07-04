@@ -83,7 +83,7 @@ public class ObjHandlerPEEX {
 
 		register.setRegistry(event.getRegistry());
 		register.register(aeguMk1_off, "aegu/aegumk1_off");
-		register.register(aeguMk1_on, "aegu/aeguml1_on", false);
+		register.register(aeguMk1_on, "aegu/aegumk1_on", false);
 		register.register(aeguMk2_off, "aegu/aegumk2_off");
 		register.register(aeguMk2_on, "aegu/aegumk2_on", false);
 		register.register(aeguMk3_off, "aegu/aegumk3_off");
@@ -96,7 +96,7 @@ public class ObjHandlerPEEX {
 		register.register(collectorMk8, "collectors/collectormk8");
 		register.register(collectorMk9, "collectors/collectormk9");
 		register.register(collectorMk10, "collectors/collectormk10");
-		register.register(collectorFinal, "collectors/collectorfinal");
+		register.register(collectorFinal, "collectors/collector_final");
 	}
 
 	/**
@@ -119,6 +119,7 @@ public class ObjHandlerPEEX {
 		register.register(new ItemBlock(collectorMk8).setRegistryName(collectorMk8.getRegistryName()));
 		register.register(new ItemBlock(collectorMk9).setRegistryName(collectorMk9.getRegistryName()));
 		register.register(new ItemBlock(collectorMk10).setRegistryName(collectorMk10.getRegistryName()));
+		register.register(new ItemBlock(collectorFinal).setRegistryName(collectorFinal.getRegistryName()));
 	}
 
 	public static void register() {

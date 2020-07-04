@@ -70,9 +70,9 @@ public class ContainerCollectorMk4 extends Container {
 
 	@Override
 	public ItemStack slotClick(int slotId, int dragType, ClickType clickTypeIn, EntityPlayer player) {
-		if(slotId >= 0 && getSlot(slotId) instanceof SlotGhost && getSlot(slotId).getStack() != null) {
-			getSlot(slotId).putStack(null);
-			return null;
+		if(slotId >= 0 && getSlot(slotId) instanceof SlotGhost && !getSlot(slotId).getStack().isEmpty()) {
+			getSlot(slotId).putStack(ItemStack.EMPTY);
+			return ItemStack.EMPTY;
 		}
 		else {
 			return super.slotClick(slotId, dragType, clickTypeIn, player);
@@ -141,7 +141,7 @@ public class ContainerCollectorMk4 extends Container {
 		Slot slot = getSlot(index);
 
 		if(slot == null || !slot.getHasStack()) {
-			return null;
+			return ItemStack.EMPTY;
 		}
 
 		ItemStack stack = slot.getStack();
@@ -149,27 +149,26 @@ public class ContainerCollectorMk4 extends Container {
 
 		if(index <= 18) {
 			if(!mergeItemStack(stack, 19, 54, false)) {
-				return null;
+				return ItemStack.EMPTY;
 			}
 		}
 		else if(index <= 54) {
 			if(!FuelMapper.isStackFuel(stack) || FuelMapper.isStackMaxFuel(stack) || !mergeItemStack(stack, 1, 8, false)) {
-				return null;
+				return ItemStack.EMPTY;
 			}
 		}
 		else {
-			return null;
+			return ItemStack.EMPTY;
 		}
 
 		if(stack.isEmpty()) {
-			slot.putStack(null);
+			slot.putStack(ItemStack.EMPTY);
 		}
 		else {
 			slot.onSlotChanged();
 		}
 
-		slot.onTake(playerIn, stack);
-		return newStack;
+		return slot.onTake(playerIn, stack);
 	}
 
 	@Override

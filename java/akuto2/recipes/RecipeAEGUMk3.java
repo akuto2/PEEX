@@ -92,4 +92,12 @@ public class RecipeAEGUMk3 extends IForgeRegistryEntry.Impl<IRecipe> implements 
 	public NonNullList<Ingredient> getIngredients() {
 		return ingredients;
 	}
+
+	public static ItemStack getKleinStack() {
+		if(KleinStar.getEmc(fullKleinOmega) != EMCHelper.getKleinStarMaxEmc(fullKleinOmega)) {
+			KleinStar.setEmc(fullKleinOmega, EMCHelper.getKleinStarMaxEmc(fullKleinOmega));
+		}
+
+		return fullKleinOmega;
+	}
 }
