@@ -99,7 +99,7 @@ public class TileEntityCondenserGrade0 extends TileEntity implements ITickable{
 		if(world.getBlockState(new BlockPos(pos.getX(), pos.getY(), pos.getZ())).getBlock() instanceof BlockCondenserGrade0) {
 			pushToInventories();
 		}
-		if(lock.getStackInSlot(0).isEmpty()) {
+		if(!lock.getStackInSlot(0).isEmpty()) {
 			condence();
 		}
 	}
@@ -110,7 +110,7 @@ public class TileEntityCondenserGrade0 extends TileEntity implements ITickable{
 
 			if(!stack.isEmpty() && !isStackEqualToLock(stack)) {
 				if(stack.getCount() <= 0) {
-					inputInventory.setStackInSlot(i, null);
+					inputInventory.setStackInSlot(i, ItemStack.EMPTY);
 				}
 			}
 		}

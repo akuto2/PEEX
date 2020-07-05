@@ -3,10 +3,16 @@ package akuto2.blocks;
 import java.util.Random;
 
 import akuto2.ObjHandlerPEEX;
+import akuto2.PEEXCore;
 import akuto2.tiles.TileEntityCondenserMk3;
+import akuto2.utils.Constants;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class BlockCondenserMk3 extends BlockCondenserMk2PEEX{
@@ -28,5 +34,13 @@ public class BlockCondenserMk3 extends BlockCondenserMk2PEEX{
 		}
 
 		return tile;
+	}
+
+	@Override
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+		if(!worldIn.isRemote) {
+			playerIn.openGui(PEEXCore.instance, Constants.CONDENSER_MK3_GUI, worldIn, pos.getX(), pos.getY(), pos.getZ());
+		}
+		return true;
 	}
 }

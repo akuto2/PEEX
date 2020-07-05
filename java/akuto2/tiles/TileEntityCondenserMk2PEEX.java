@@ -52,7 +52,7 @@ public class TileEntityCondenserMk2PEEX extends CondenserMK2Tile{
 		for(int i = 0; i < getInput().getSlots(); i++) {
 			ItemStack stack = getInput().getStackInSlot(i);
 
-			if(stack == null || isStackEqualToLock(stack)) {
+			if(stack.isEmpty()|| isStackEqualToLock(stack)) {
 				continue;
 			}
 
@@ -62,13 +62,14 @@ public class TileEntityCondenserMk2PEEX extends CondenserMK2Tile{
 			}
 			else {
 				addEMC(EMCHelper.getEmcValue(stack) * stack.getCount());
-				getInput().setStackInSlot(i, null);
+				getInput().setStackInSlot(i, ItemStack.EMPTY);
 			}
 			break;
 		}
 
 		while(hasSpace() && getStoredEmc() >= requiredEmc) {
-
+			pushStack();
+			removeEMC(requiredEmc);
 		}
 	}
 
@@ -76,7 +77,7 @@ public class TileEntityCondenserMk2PEEX extends CondenserMK2Tile{
 	protected boolean hasSpace() {
 		for(int i = 0; i < getOutput().getSlots(); i++) {
 			ItemStack stack = getOutput().getStackInSlot(i);
-			if(stack == null) {
+			if(stack.isEmpty()) {
 				return true;
 			}
 
@@ -128,7 +129,7 @@ public class TileEntityCondenserMk2PEEX extends CondenserMK2Tile{
 				// 搬出を試す
 				ItemStack extractTest = getOutput().extractItem(i, Integer.MAX_VALUE, true);
 				// nullはスロットにアイテムがない
-				if(extractTest == null) {
+				if(extractTest.isEmpty()) {
 					continue;
 				}
 
@@ -140,7 +141,7 @@ public class TileEntityCondenserMk2PEEX extends CondenserMK2Tile{
 				if(successfullyTransferred > 0) {
 					ItemStack toInsert = getOutput().extractItem(i, successfullyTransferred, false);
 					ItemStack result = ItemHandlerHelper.insertItemStacked(handler, toInsert, false);
-					if(result == null) {
+					if(result.isEmpty()) {
 						break;
 					}
 				}
@@ -213,6 +214,7 @@ public class TileEntityCondenserMk2PEEX extends CondenserMK2Tile{
 				coordAEGU[0][i] = String.valueOf(x);
 				coordAEGU[1][i] = String.valueOf(y);
 				coordAEGU[2][i] = String.valueOf(z);
+				addAEGUNum();
 				return;
 			}
 		}
@@ -318,7 +320,7 @@ public class TileEntityCondenserMk2PEEX extends CondenserMK2Tile{
 				int z = Integer.parseInt(coordAEGU[2][i]);
 
 				Block aegu = world.getBlockState(new BlockPos(x, y, z)).getBlock();
-				if(aegu instanceof BlockAEGU && !(aegu instanceof BlockAEGU)) {
+				if(aegu instanceof BlockAEGU && !(aegu instanceof BlockAEGUEX)) {
 					if(((BlockAEGU)aegu).isGenerate() != generate) {
 						((BlockAEGU)aegu).changetGenerate(world, x, y, z);
 					}

@@ -42,7 +42,7 @@ public class TileEntityCondenserMk3 extends TileEntityCondenserMk2PEEX{
 			int z = Integer.parseInt(coordAEGU[2][i]);
 			Block aegu = world.getBlockState(new BlockPos(x, y, z)).getBlock();
 			if(aegu instanceof BlockAEGU) {
-				if(((BlockAEGUEX)aegu).isGenerate() == true)
+				if(((BlockAEGU)aegu).isGenerate() == true)
 					return false;
 			}
  		}

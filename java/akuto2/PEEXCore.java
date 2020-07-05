@@ -1,7 +1,5 @@
 package akuto2;
 
-import java.util.logging.Logger;
-
 import akuto2.gui.GuiHandler;
 import akuto2.proxies.CommonProxy;
 import akuto2.utils.CreativeTabPEEX;
@@ -31,8 +29,6 @@ public class PEEXCore {
 	public static UpdateChecker update = null;
 
 	public static CreativeTabs tabPEEX = new CreativeTabPEEX("PEEX");
-
-	public static Logger logger = Logger.getLogger("peex");
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {

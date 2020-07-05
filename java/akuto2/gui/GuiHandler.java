@@ -10,6 +10,9 @@ import akuto2.gui.container.ContainerCollectorMk8;
 import akuto2.gui.container.ContainerCollectorMk9;
 import akuto2.gui.container.ContainerCondenserGrade0;
 import akuto2.gui.container.ContainerCondenserMk3;
+import akuto2.gui.container.ContainerRelayFinal;
+import akuto2.gui.container.ContainerRelayMk4;
+import akuto2.gui.container.ContainerRelayMk5;
 import akuto2.tiles.TileEntityCollectorFinal;
 import akuto2.tiles.TileEntityCollectorMk10;
 import akuto2.tiles.TileEntityCollectorMk4;
@@ -21,6 +24,9 @@ import akuto2.tiles.TileEntityCollectorMk9;
 import akuto2.tiles.TileEntityCondenserGrade0;
 import akuto2.tiles.TileEntityCondenserMk3;
 import akuto2.utils.Constants;
+import moze_intel.projecte.gameObjs.tiles.TileEntityRelayFinal;
+import moze_intel.projecte.gameObjs.tiles.TileEntityRelayMk4;
+import moze_intel.projecte.gameObjs.tiles.TileEntityRelayMk5;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
@@ -74,10 +80,16 @@ public class GuiHandler implements IGuiHandler{
 				return new GuiCollectorFinal(player.inventory, (TileEntityCollectorFinal)tile);
 			break;
 		case Constants.RELAY_MK4_GUI:
+			if(tile instanceof TileEntityRelayMk4)
+				return new GuiRelayMk4(player.inventory, (TileEntityRelayMk4)tile);
 			break;
 		case Constants.RELAY_MK5_GUI:
+			if(tile instanceof TileEntityRelayMk5)
+				return new GuiRelayMk5(player.inventory, (TileEntityRelayMk5)tile);
 			break;
 		case Constants.RELAY_FINAL_GUI:
+			if(tile instanceof TileEntityRelayFinal)
+				return new GuiRelayFinal(player.inventory, (TileEntityRelayFinal)tile);
 			break;
 		}
 		return null;
@@ -128,10 +140,16 @@ public class GuiHandler implements IGuiHandler{
 				return new ContainerCollectorFinal(player.inventory, (TileEntityCollectorFinal)tile);
 			break;
 		case Constants.RELAY_MK4_GUI:
+			if(tile instanceof TileEntityRelayMk4)
+				return new ContainerRelayMk4(player.inventory, (TileEntityRelayMk4)tile);
 			break;
 		case Constants.RELAY_MK5_GUI:
+			if(tile instanceof TileEntityRelayMk5)
+				return new ContainerRelayMk5(player.inventory, (TileEntityRelayMk5)tile);
 			break;
 		case Constants.RELAY_FINAL_GUI:
+			if(tile instanceof TileEntityRelayFinal)
+				return new ContainerRelayFinal(player.inventory, (TileEntityRelayFinal)tile);
 			break;
 		}
 		return null;

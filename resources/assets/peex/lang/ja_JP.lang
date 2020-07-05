@@ -27,5 +27,11 @@ item.cm_armor_chest.name=カオスマターチェストプレート
 item.cm_armor_legs.name=カオスマターレギンス
 item.cm_armor_feet.name=カオスマターブーツ
 
+tile.collector_Mk4.name=EMCコレクター Mk4
+tile.collector_Mk5.name=EMCコレクター Mk5
+tile.AEGU_MK1.name=錬金術的エネルギー生成装置
+tile.AEGU_MK2.name=発展型AEGU
+tile.AEGU_MK3.name=究極型AEGU
+
 peex.update.client=§d§lPEEX§rが%1$sにアップデートされました！ §5§nここからダウンロードしてください！§r
 peex.update.server=PEEXが%1$sにアップデートされました。 ダウンロードはこちら:%2$s.
