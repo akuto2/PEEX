@@ -1,7 +1,7 @@
 package Akuto2.gui.container;
 
+import Akuto2.gui.container.slots.SlotCondenserGrade0Lock;
 import Akuto2.tiles.TileEntityCondenserGrade0;
-import moze_intel.projecte.gameObjs.container.slots.SlotCondenserLock;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ClickType;
@@ -21,7 +21,7 @@ public class ContainerCondenserGrade0 extends Container{
 	}
 
 	private void initSlots(InventoryPlayer invPlayer) {
-		addSlotToContainer(new SlotCondenserLock(tile.getLock(), 0, 12, 6));
+		addSlotToContainer(new SlotCondenserGrade0Lock(tile.getLock(), 0, 12, 6));
 
 		IItemHandler handler = tile.getInput();
 
