@@ -15,7 +15,7 @@ public class CreativeTabPEEX extends CreativeTabs{
 	@SideOnly(Side.CLIENT)
 	@Override
 	public ItemStack getTabIconItem() {
-		return new ItemStack(ObjHandlerPEEX.aeguMk1_off);
+		return new ItemStack(ObjHandlerPEEX.matterBlock, 1, 1);
 	}
 
 	@Override

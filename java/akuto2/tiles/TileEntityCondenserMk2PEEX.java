@@ -52,7 +52,7 @@ public class TileEntityCondenserMk2PEEX extends CondenserMK2Tile{
 		for(int i = 0; i < getInput().getSlots(); i++) {
 			ItemStack stack = getInput().getStackInSlot(i);
 
-			if(stack.isEmpty()|| isStackEqualToLock(stack)) {
+			if(stack.isEmpty() || isStackEqualToLock(stack)) {
 				continue;
 			}
 
@@ -166,7 +166,7 @@ public class TileEntityCondenserMk2PEEX extends CondenserMK2Tile{
 
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
-		super.writeToNBT(compound);
+		compound = super.writeToNBT(compound);
 
 		compound.setBoolean("IsGenerate", isGenerate);
 		compound.setInteger("NumAEGU", numAEGU);
@@ -285,7 +285,7 @@ public class TileEntityCondenserMk2PEEX extends CondenserMK2Tile{
 			changeGenerate(true);
 			isGenerate = true;
 		}
-		else if(isGenerate = true) {
+		else if(isGenerate == true) {
 			changeGenerate(false);
 			isGenerate = false;
 		}
@@ -296,7 +296,7 @@ public class TileEntityCondenserMk2PEEX extends CondenserMK2Tile{
 	 */
 	public boolean checkCanUseAEGU() {
 		for(int i = 0; i < coordAEGU[0].length; i++) {
-			if(coordAEGU[0][i] == null || coordAEGU[0][i].equals(""))	continue;
+			if(coordAEGU[0][i] == null || coordAEGU[0][i].equals("")) continue;
 
 			int x = Integer.parseInt(coordAEGU[0][i]);
 			int y = Integer.parseInt(coordAEGU[1][i]);

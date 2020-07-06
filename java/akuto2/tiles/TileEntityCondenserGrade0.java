@@ -147,7 +147,7 @@ public class TileEntityCondenserGrade0 extends TileEntity implements ITickable{
 	}
 
 	public boolean isStackEqualToLock(ItemStack stack) {
-		if(lock.getStackInSlot(0) == null) {
+		if(lock.getStackInSlot(0).isEmpty()) {
 			return false;
 		}
 

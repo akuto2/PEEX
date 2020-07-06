@@ -49,7 +49,7 @@ public class ContainerCondenserMk3 extends LongContainer{
 
 		for(int i = 0; i < 3; i++) {
 			for(int j = 0; j < 9; j++) {
-				addSlotToContainer(new Slot(player, j + i * 9, 48 + j * 18, 154 + i * 18));
+				addSlotToContainer(new Slot(player, j + i * 9 + 9, 48 + j * 18, 154 + i * 18));
 			}
 		}
 

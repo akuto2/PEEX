@@ -115,7 +115,7 @@ public class BlockAEGUEX extends BlockAEGU{
 				for(int z = zCoord - 1; z <= zCoord + 1; z++) {
 					if(world.getTileEntity(new BlockPos(x, y, z)) instanceof TileEntityCondenserMk3) {
 						TileEntityCondenserMk3 tile = (TileEntityCondenserMk3)world.getTileEntity(new BlockPos(x, y, z));
-						if(tile.destoreAEGUCoord(this, x, y, z)) {
+						if(tile.destoreAEGUCoord(this, xCoord, yCoord, zCoord)) {
 							return true;
 						}
 					}
