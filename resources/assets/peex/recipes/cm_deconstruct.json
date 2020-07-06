@@ -1,0 +1,14 @@
+{
+    "result": {
+        "item": "peex:matter",
+        "data": 1,
+        "count": 9
+    },
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "peex:matterblock",
+            "data": 1
+        }
+    ]
+}

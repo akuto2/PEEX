@@ -1,0 +1,20 @@
+{
+    "result":{
+        "item": "peex:relays/relaymk4"
+    },
+    "type": "minecraft:crafting_shaped",
+    "pattern":[
+        "rrr",
+        "rbr",
+        "rrr"
+    ],
+    "key":{
+        "r":{
+            "item": "projecte:relay_mk3"
+        },
+        "b":{
+            "item": "peex:matter",
+            "data": 0
+        }
+    }
+}

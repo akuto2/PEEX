@@ -1,0 +1,28 @@
+{
+    "conditions": [
+        {
+            "type": "peex:finaltype_enabled"
+        }
+    ],
+    "result": {
+        "item": "peex:collectors/collector_final"
+    },
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "bcb",
+        "cmc",
+        "bcb"
+    ],
+    "key": {
+        "c": {
+            "item": "peex:collectors/collectormk10"
+        },
+        "m": {
+            "item": "peex:matterblock",
+            "data": 1
+        },
+        "b": {
+            "item": "minecraft:bedrock"
+        }
+    }
+}

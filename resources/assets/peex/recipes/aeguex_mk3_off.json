@@ -1,0 +1,20 @@
+{
+    "result": {
+        "item": "peex:aegu/aeguexmk3_off"
+    },
+    "type": "minecraft:crafting_shaped",
+    "pattern":[
+        "aaa",
+        "aca",
+        "aaa"
+    ],
+    "key": {
+        "a": {
+            "item": "peex:aegu/aeguexmk2_off"
+        },
+        "c": {
+            "item": "peex:matterblock",
+            "data": 1
+        }
+    }
+}

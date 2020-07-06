@@ -5,7 +5,10 @@ import akuto2.blocks.BlockAEGUEX;
 import akuto2.blocks.BlockCollector;
 import akuto2.blocks.BlockCondenserGrade0;
 import akuto2.blocks.BlockCondenserMk3;
+import akuto2.blocks.BlockMatter;
 import akuto2.blocks.BlockRelay;
+import akuto2.items.ItemBlockMatter;
+import akuto2.items.ItemMatter;
 import akuto2.recipes.RecipeAEGUMk3;
 import akuto2.tiles.TileEntityCollectorFinal;
 import akuto2.tiles.TileEntityCollectorMk10;
@@ -24,11 +27,11 @@ import moze_intel.projecte.gameObjs.tiles.TileEntityRelayMk5;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 @EventBusSubscriber(modid = "peex")
@@ -102,6 +105,7 @@ public class ObjHandlerPEEX {
 		relayMk4 = new BlockRelay(4);
 		relayMk5 = new BlockRelay(5);
 		relayFinal = new BlockRelay(99);
+		matterBlock = new BlockMatter();
 
 		register.setRegistry(event.getRegistry());
 		register.register(aeguMk1_off, "aegu/aegumk1_off");
@@ -132,6 +136,7 @@ public class ObjHandlerPEEX {
 		register.register(relayMk4, "relays/relaymk4");
 		register.register(relayMk5, "relays/relaymk5");
 		register.register(relayFinal, "relays/relay_final");
+		register.register(matterBlock, "matterblock");
 	}
 
 	/**
@@ -139,6 +144,8 @@ public class ObjHandlerPEEX {
 	 */
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> event) {
+		matter = new ItemMatter();
+
 		register.setRegistry(event.getRegistry());
 		register.register(new ItemBlock(aeguMk1_off).setRegistryName(aeguMk1_off.getRegistryName()));
 		register.register(new ItemBlock(aeguMk1_on).setRegistryName(aeguMk1_on.getRegistryName()));
@@ -168,6 +175,8 @@ public class ObjHandlerPEEX {
 		register.register(new ItemBlock(relayMk4).setRegistryName(relayMk4.getRegistryName()));
 		register.register(new ItemBlock(relayMk5).setRegistryName(relayMk5.getRegistryName()));
 		register.register(new ItemBlock(relayFinal).setRegistryName(relayFinal.getRegistryName()));
+		register.register(new ItemBlockMatter(matterBlock).setRegistryName(matterBlock.getRegistryName()));
+		register.register(matter, "matter");
 	}
 
 	public static void register() {
@@ -187,11 +196,9 @@ public class ObjHandlerPEEX {
 		GameRegistry.registerTileEntity(TileEntityRelayFinal.class, new ResourceLocation("peex", "relays/relayfinal"));
 	}
 
-	/**
-	 * レシピの追加
-	 */
-	public static void addRecipes() {
+	@SubscribeEvent
+	public static void addRecipes(RegistryEvent.Register<IRecipe> event) {
 		// AEGUMK3(指定のレシピを必要とするため)
-		ForgeRegistries.RECIPES.register(new RecipeAEGUMk3());
+		event.getRegistry().register(new RecipeAEGUMk3());
 	}
 }

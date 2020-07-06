@@ -1,0 +1,20 @@
+{
+    "result": {
+        "item": "peex:aegu/aegumk2_off"
+    },
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "aaa",
+        "asa",
+        "aaa"
+    ],
+    "key": {
+        "a": {
+            "item": "peex:aegu/aegumk1_off"
+        },
+        "s": {
+            "item": "projecte:item.pe_klein_star",
+            "data": 4
+        }
+    }
+}

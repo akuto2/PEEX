@@ -1,0 +1,19 @@
+{
+    "result": {
+        "item": "peex:aegu/aegumk1_off"
+    },
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "ccc",
+        "cpc",
+        "ccc"
+    ],
+    "key": {
+        "c": {
+            "item": "projecte:collector_mk3"
+        },
+        "p": {
+            "item": "projecte:dm_pedestal"
+        }
+    }
+}

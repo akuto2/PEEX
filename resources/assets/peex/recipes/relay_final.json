@@ -1,0 +1,28 @@
+{
+    "conditions":[
+        {
+            "type": "peex:finaltype_enabled"
+        }
+    ],
+    "result":{
+        "item": "peex:relays/relay_final"
+    },
+    "type": "minecraft:crafting_shaped",
+    "pattern":[
+        "brb",
+        "rar",
+        "brb"
+    ],
+    "key":{
+        "r":{
+            "item": "peex:relays/relaymk5"
+        },
+        "a":{
+            "item": "peex:matterblock",
+            "data": 1
+        },
+        "b":{
+            "item": "minecraft:bedrock"
+        }
+    }
+}

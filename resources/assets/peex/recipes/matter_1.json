@@ -1,0 +1,22 @@
+{
+    "result": {
+        "item": "peex:matter",
+        "data": 1
+    },
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "bbb",
+        "brb",
+        "bbb"
+    ],
+    "key": {
+        "b": {
+            "item": "peex:matter",
+            "data": 0
+        },
+        "r": {
+            "item": "projecte:item.pe_matter",
+            "data": 1
+        }
+    }
+}

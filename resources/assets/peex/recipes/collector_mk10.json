@@ -1,0 +1,20 @@
+{
+    "result": {
+        "item": "peex:collectors/collectormk10"
+    },
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "ccc",
+        "cmc",
+        "ccc"
+    ],
+    "key": {
+        "c": {
+            "item": "peex:collectors/collectormk9"
+        },
+        "m": {
+            "item": "peex:matter",
+            "data": 1
+        }
+    }
+}

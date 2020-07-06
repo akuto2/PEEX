@@ -1,6 +1,7 @@
 package akuto2.proxies;
 
 import akuto2.ObjHandlerPEEX;
+import akuto2.blocks.BlockMatter.EnumMatterType;
 import akuto2.rendering.RendererCondenserGrade0;
 import akuto2.rendering.RendererCondenserMk3;
 import akuto2.tiles.TileEntityCondenserGrade0;
@@ -55,6 +56,8 @@ public class ClientProxy extends CommonProxy{
 		registerBlock(ObjHandlerPEEX.relayMk4);
 		registerBlock(ObjHandlerPEEX.relayMk5);
 		registerBlock(ObjHandlerPEEX.relayFinal);
+
+		registerMatter();
 	}
 
 	@Override
@@ -75,6 +78,16 @@ public class ClientProxy extends CommonProxy{
 	private static void registerItem(Item item, int meta) {
 		String name = ForgeRegistries.ITEMS.getKey(item).toString();
 		ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(name, "inventory"));
+	}
+
+	private static void registerMatter() {
+		for(EnumMatterType e : EnumMatterType.values()) {
+			ModelLoader.setCustomModelResourceLocation(ObjHandlerPEEX.matter, e.ordinal(), new ModelResourceLocation("peex:" + e.getName(), "inentory"));
+
+			String name = ForgeRegistries.BLOCKS.getKey(ObjHandlerPEEX.matterBlock).toString();
+			ModelLoader.registerItemVariants(Item.getItemFromBlock(ObjHandlerPEEX.matterBlock), new ModelResourceLocation(name, "tier=" + e.getName()));
+			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(ObjHandlerPEEX.matterBlock), e.ordinal(), new ModelResourceLocation(name, "tier=" + e.getName()));
+		}
 	}
 
 	@Override

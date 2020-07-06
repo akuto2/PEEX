@@ -1,0 +1,38 @@
+{
+    "conditions": [
+        {
+            "type": "gradezero_enabled"
+        }
+    ],
+    "result": {
+        "item": "peex:condenser_grade0"
+    },
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "aba",
+        "lcr",
+        "aoa"
+    ],
+    "key": {
+        "a": {
+            "item": "peex:aegu/aeguexfinal_off"
+        },
+        "b": {
+            "item": "peex:matterblock",
+            "data": 0
+        },
+        "c": {
+            "item": "peex:condenser_mk3"
+        },
+        "l": {
+            "item": "peex:collectors/collector_final"
+        },
+        "r": {
+            "item": "peex:relays/relay_final"
+        },
+        "o": {
+            "item": "peex:matterblock",
+            "data": 1
+        }
+    }
+}

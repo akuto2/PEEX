@@ -42,7 +42,6 @@ public class PEEXCore {
 	public void Init(FMLInitializationEvent event) {
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
 		ObjHandlerPEEX.register();
-		ObjHandlerPEEX.addRecipes();
 	}
 
 	@EventHandler
