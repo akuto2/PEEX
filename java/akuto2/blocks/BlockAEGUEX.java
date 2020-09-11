@@ -44,18 +44,21 @@ public class BlockAEGUEX extends BlockAEGU{
 			} else {
 				world.setBlockState(new BlockPos(x, y, z), ObjHandlerPEEX.aeguEXMk1_on.getDefaultState(), 3);
 			}
+			break;
 		case 2:
 			if(isGenerate) {
 				world.setBlockState(new BlockPos(x, y, z), ObjHandlerPEEX.aeguEXMk2_off.getDefaultState(), 3);
 			} else {
 				world.setBlockState(new BlockPos(x, y, z), ObjHandlerPEEX.aeguEXMk2_on.getDefaultState(), 3);
 			}
+			break;
 		case 3:
 			if(isGenerate) {
 				world.setBlockState(new BlockPos(x, y, z), ObjHandlerPEEX.aeguEXMk3_off.getDefaultState(), 3);
 			} else {
 				world.setBlockState(new BlockPos(x, y, z), ObjHandlerPEEX.aeguEXMk3_on.getDefaultState(), 3);
 			}
+			break;
 		case 4:
 			if(isGenerate) {
 				world.setBlockState(new BlockPos(x, y, z), ObjHandlerPEEX.aeguEXFinal_off.getDefaultState(), 3);
