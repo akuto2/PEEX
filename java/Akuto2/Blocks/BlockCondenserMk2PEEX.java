@@ -3,21 +3,19 @@ package Akuto2.blocks;
 import Akuto2.tiles.TileEntityCondenserMk2PEEX;
 import moze_intel.projecte.gameObjs.blocks.CondenserMK2;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class BlockCondenserMk2PEEX extends CondenserMK2{
-	int x, y, z;
+	protected int x, y, z;
 
 	public BlockCondenserMk2PEEX() {
 		super();
 	}
 
 	@Override
-	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
+	public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state) {
 		x = pos.getX();
 		y = pos.getY();
 		z = pos.getZ();
