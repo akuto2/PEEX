@@ -1,6 +1,6 @@
 package moze_intel.projecte.gameObjs.tiles;
 
-import akuto2.utils.Constants;
+import akuto2.peex.utils.Constants;
 
 /**
  * パッケージが同じものしかprivateコンストラクタを使えないので仕方なくパッケージを変える
