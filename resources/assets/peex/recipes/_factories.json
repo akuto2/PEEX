@@ -1,6 +1,6 @@
 {
     "conditions":{
-        "finaltype_enabled": "akuto2.config.FinalTypeEnabledFactory",
-        "gradezero_enabled": "akuto2.config.GradeZeroEnabledFactory"
+        "finaltype_enabled": "akuto2.peex.config.FinalTypeEnabledFactory",
+        "gradezero_enabled": "akuto2.peex.config.GradeZeroEnabledFactory"
     }
 }
