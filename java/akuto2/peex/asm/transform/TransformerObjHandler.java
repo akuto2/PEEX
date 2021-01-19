@@ -70,9 +70,9 @@ public class TransformerObjHandler implements IClassTransformer, Opcodes{
 		public void visitFieldInsn(int opcode, String owner, String name, String desc) {
 			// CondenserMk2PEEXに変更
 			if(targetFieldName.equals(name)) {
-				mv.visitTypeInsn(NEW, "Akuto2/blocks/BlockCondenserMk2PEEX");
+				mv.visitTypeInsn(NEW, "akuto2/peex/blocks/BlockCondenserMk2PEEX");
 				mv.visitInsn(DUP);
-				mv.visitMethodInsn(INVOKESPECIAL, "Akuto2/blocks/BlockCondenserMk2PEEX", "<init>", "()V", false);
+				mv.visitMethodInsn(INVOKESPECIAL, "akuto2/peex/blocks/BlockCondenserMk2PEEX", "<init>", "()V", false);
 			}
 
 			super.visitFieldInsn(opcode, owner, name, desc);
@@ -110,7 +110,7 @@ public class TransformerObjHandler implements IClassTransformer, Opcodes{
 			super.visitCode();
 
 			// ここから追加処理
-			mv.visitLdcInsn(Type.getType("LAkuto2/tiles/TileEntityCondenserMk2PEEX;"));
+			mv.visitLdcInsn(Type.getType("Lakuto2/peex/tiles/TileEntityCondenserMk2PEEX;"));
 			mv.visitLdcInsn("CondenserMK2TilePEEX");
 			mv.visitMethodInsn(INVOKESTATIC, "net/minecraftforge/fml/common/registry/GameRegistry", "registerTileEntity", "(Ljava/lang/Class;Ljava/lang/String;)V", false);
 		}
