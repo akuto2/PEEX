@@ -34,12 +34,12 @@ public class ContainerCollectorMk4 extends Container{
 		IItemHandler aux = tile.getAux();
 		IItemHandler main = tile.getInput();
 
-		addSlotToContainer(new ValidatedSlot(aux, TileEntityCollectorMk4.UPGRADE_SLOT, 158, 58, SlotPredicates.COLLECTOR_INV));
+		addSlotToContainer(new ValidatedSlot(aux, TileEntityCollectorMk4.UPGRADING_SLOT, 158, 58, SlotPredicates.COLLECTOR_INV));
 
 		int counter = main.getSlots() - 1;
 		for(int i = 0; i < 4; i++) {
 			for(int j = 0; j < 4; j++) {
-				addSlotToContainer(new ValidatedSlot(main, counter--, 218 + i * 18, 8 + j * 18, SlotPredicates.COLLECTOR_INV));
+				addSlotToContainer(new ValidatedSlot(main, counter--, 18 + i * 18, 8 + j * 18, SlotPredicates.COLLECTOR_INV));
 			}
 		}
 
