@@ -18,7 +18,7 @@ import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 
-@Mod(modid = "peex", name = "PEEX", version = "3.0.7", dependencies = "required-after:akutolib;required-after:projecte")
+@Mod(modid = "peex", name = "PEEX", version = "3.0.8", dependencies = "required-after:akutolib;required-after:projecte")
 public class PEEXCore {
 	@Instance("peex")
 	public static PEEXCore instance;
