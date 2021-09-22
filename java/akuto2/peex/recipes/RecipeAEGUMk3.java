@@ -51,7 +51,7 @@ public class RecipeAEGUMk3 extends IForgeRegistryEntry.Impl<IRecipe> implements 
 			ItemStack input = inv.getStackInSlot(i);
 			if(input == null)	return false;
 			if(i == 4) {
-				if(!(ItemStack.areItemStacksEqual(input, fullKleinOmega) && ItemStack.areItemStackTagsEqual(input, fullKleinOmega))) {
+				if(!checkKleinStarEMC(input)) {
 					return false;
 				}
 			}
@@ -91,6 +91,17 @@ public class RecipeAEGUMk3 extends IForgeRegistryEntry.Impl<IRecipe> implements 
 	@Override
 	public NonNullList<Ingredient> getIngredients() {
 		return ingredients;
+	}
+
+	/**
+	 * 置かれたアイテムがクラインの星でEMCが満タンかどうかチェックする
+	 * @since 3.0.9
+	 */
+	private boolean checkKleinStarEMC(ItemStack stack) {
+		if(stack.getItem() != fullKleinOmega.getItem() || stack.getItemDamage() != fullKleinOmega.getItemDamage())
+			return false;
+
+		return KleinStar.getEmc(stack) == KleinStar.getEmc(getKleinStack());
 	}
 
 	public static ItemStack getKleinStack() {
