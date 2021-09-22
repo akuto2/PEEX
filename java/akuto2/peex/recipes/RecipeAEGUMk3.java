@@ -33,7 +33,7 @@ public class RecipeAEGUMk3 extends ShapedRecipes{
 			ItemStack input = inv.getStackInSlot(i);
 			if(input == null)	return false;
 			if(i == 4) {
-				if(!(ItemStack.areItemStacksEqual(input, fullKleinOmega) && ItemStack.areItemStackTagsEqual(input, fullKleinOmega))) {
+				if(!checkKleinStarEMC(input)) {
 					return false;
 				}
 			}
@@ -58,6 +58,17 @@ public class RecipeAEGUMk3 extends ShapedRecipes{
 	@Override
 	public ItemStack getRecipeOutput() {
 		return output;
+	}
+
+	/**
+	 * 置かれたアイテムがクラインの星でEMCが満タンかどうかチェックする
+	 * @since 2.0.6
+	 */
+	private boolean checkKleinStarEMC(ItemStack stack) {
+		if(stack.getItem() != fullKleinOmega.getItem() || stack.getItemDamage() != fullKleinOmega.getItemDamage())
+			return false;
+
+		return KleinStar.getEmc(stack) == KleinStar.getEmc(getKleinStack());
 	}
 
 	public static ItemStack getKleinStack() {
