@@ -9,6 +9,8 @@ import akuto2.peex.blocks.BlockMatter;
 import akuto2.peex.blocks.BlockRelay;
 import akuto2.peex.items.ItemBlockMatter;
 import akuto2.peex.items.ItemMatter;
+import akuto2.peex.items.armor.ItemBMArmor;
+import akuto2.peex.items.armor.ItemCMArmor;
 import akuto2.peex.recipes.RecipeAEGUMk3;
 import akuto2.peex.tiles.TileEntityCollectorFinal;
 import akuto2.peex.tiles.TileEntityCollectorMk10;
@@ -21,6 +23,7 @@ import akuto2.peex.tiles.TileEntityCollectorMk9;
 import akuto2.peex.tiles.TileEntityCondenserGrade0;
 import akuto2.peex.tiles.TileEntityCondenserMk3;
 import akuto2.peex.utils.PEEXConfig;
+import lib.utils.RecipeManager;
 import lib.utils.Register;
 import moze_intel.projecte.gameObjs.ObjHandler;
 import moze_intel.projecte.gameObjs.tiles.TileEntityRelayFinal;
@@ -28,9 +31,13 @@ import moze_intel.projecte.gameObjs.tiles.TileEntityRelayMk4;
 import moze_intel.projecte.gameObjs.tiles.TileEntityRelayMk5;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.SoundEvents;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.RecipeSorter;
 import net.minecraftforge.oredict.RecipeSorter.Category;
@@ -69,6 +76,19 @@ public class ObjHandlerPEEX {
 	public static Block matterBlock;
 	public static Item matter;
 
+	public static Item bmHelmet;
+	public static Item bmChest;
+	public static Item bmLegs;
+	public static Item bmFeet;
+
+	public static Item cmHelmet;
+	public static Item cmChest;
+	public static Item cmLegs;
+	public static Item cmFeet;
+
+	public static ArmorMaterial bmMaterial;
+	public static ArmorMaterial cmMaterial;
+
 	public static Register register = new Register("peex", PEEXCore.peexTab);
 
 
@@ -99,6 +119,8 @@ public class ObjHandlerPEEX {
 		GameRegistry.registerTileEntity(TileEntityCollectorMk5.class, "CollectorMk5Tile");
 
 		// PEEX
+		bmMaterial = EnumHelper.addArmorMaterial("bm_material", "", 9999, new int[] { 8, 12, 10, 6 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 3.0F);
+		cmMaterial = EnumHelper.addArmorMaterial("cm_material", "", 9999, new int[] { 10, 15, 13, 8 }, 25, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 4.0F);
 		aeguEXMk1_off = new BlockAEGUEX(1, false);
 		aeguEXMk1_on = new BlockAEGUEX(1, true);
 		aeguEXMk2_off = new BlockAEGUEX(2, false);
@@ -120,6 +142,14 @@ public class ObjHandlerPEEX {
 		relayFinal = new BlockRelay(99);
 		matterBlock = new BlockMatter();
 		matter = new ItemMatter();
+		bmHelmet = new ItemBMArmor(EntityEquipmentSlot.HEAD);
+		bmChest = new ItemBMArmor(EntityEquipmentSlot.CHEST);
+		bmLegs = new ItemBMArmor(EntityEquipmentSlot.LEGS);
+		bmFeet = new ItemBMArmor(EntityEquipmentSlot.FEET);
+		cmHelmet = new ItemCMArmor(EntityEquipmentSlot.HEAD);
+		cmChest = new ItemCMArmor(EntityEquipmentSlot.CHEST);
+		cmLegs = new ItemCMArmor(EntityEquipmentSlot.LEGS);
+		cmFeet = new ItemCMArmor(EntityEquipmentSlot.FEET);
 
 		register.register(aeguEXMk1_off, new ItemBlock(aeguEXMk1_off), "aegu/aeguexmk1_off");
 		register.register(aeguEXMk1_on, new ItemBlock(aeguEXMk1_on), "aegu/aeguexmk1_on", false);
@@ -142,6 +172,14 @@ public class ObjHandlerPEEX {
 		register.register(relayFinal, new ItemBlock(relayFinal), "relays/relay_final");
 		register.register(matterBlock, new ItemBlockMatter(matterBlock), "matterblock");
 		register.register(matter, "matter");
+		register.register(bmHelmet, "bm_helmet");
+		register.register(bmChest, "bm_chest");
+		register.register(bmLegs, "bm_legs");
+		register.register(bmFeet, "bm_feet");
+		register.register(cmHelmet, "cm_helmet");
+		register.register(cmChest, "cm_chest");
+		register.register(cmLegs, "cm_legs");
+		register.register(cmFeet, "cm_feet");
 
 		GameRegistry.registerTileEntity(TileEntityCondenserMk3.class, "CondenserMk3Tile");
 		GameRegistry.registerTileEntity(TileEntityCondenserGrade0.class, "CondenserGrade0Tile");
@@ -189,6 +227,9 @@ public class ObjHandlerPEEX {
 		GameRegistry.addRecipe(new ItemStack(aeguEXMk2_off), "aaa", "aca", "aaa", 'a', aeguEXMk1_off, 'c', new ItemStack(matter, 1, 1));
 		GameRegistry.addRecipe(new ItemStack(aeguEXMk3_off), "aaa", "aca", "aaa", 'a', aeguEXMk2_off, 'c', new ItemStack(matterBlock, 1, 1));
 		GameRegistry.addRecipe(new ItemStack(condenserMk3), "aba", "bcb", "aba", 'a', new ItemStack(matter, 1, 1), 'b', new ItemStack(matter, 1, 0), 'c', ObjHandler.condenserMk2);
+
+		RecipeManager.addArmorRecipe(new ItemStack(matter, 1, 0), new ItemStack(bmHelmet), new ItemStack(bmChest), new ItemStack(bmLegs), new ItemStack(bmFeet));
+		RecipeManager.addArmorRecipe(new ItemStack(matter, 1, 1), new ItemStack(cmHelmet), new ItemStack(cmChest), new ItemStack(cmLegs), new ItemStack(cmFeet));
 
 		if(PEEXConfig.isFinalType) {
 			GameRegistry.addRecipe(new ItemStack(collectorFinal), "bcb", "cmc", "bcb", 'b', Blocks.BEDROCK, 'c', collectorMk10, 'm', new ItemStack(matterBlock, 1, 1));

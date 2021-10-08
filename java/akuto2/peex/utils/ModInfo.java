@@ -7,7 +7,7 @@ public class ModInfo {
 		metadata.modId = "PEEX";
 		metadata.name = "PEEX";
 		metadata.description = "Final Form of Equipment to Produce EMC";
-		metadata.version = "2.0.6";
+		metadata.version = "2.0.7";
 		metadata.url = "https://www.curseforge.com/minecraft/mc-mods/peex";
 		metadata.updateJSON = "https://raw.githubusercontent.com/akuto2/PEEX/master/PEEX-Update.json";
 		metadata.authorList.add("akuto2");

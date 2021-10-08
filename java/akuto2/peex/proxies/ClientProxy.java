@@ -54,6 +54,16 @@ public class ClientProxy extends CommonProxy{
 		registerBlock(ObjHandlerPEEX.relayMk5);
 		registerBlock(ObjHandlerPEEX.relayFinal);
 
+		registerItem(ObjHandlerPEEX.bmHelmet);
+		registerItem(ObjHandlerPEEX.bmChest);
+		registerItem(ObjHandlerPEEX.bmLegs);
+		registerItem(ObjHandlerPEEX.bmFeet);
+
+		registerItem(ObjHandlerPEEX.cmHelmet);
+		registerItem(ObjHandlerPEEX.cmChest);
+		registerItem(ObjHandlerPEEX.cmLegs);
+		registerItem(ObjHandlerPEEX.cmFeet);
+
 		registerMatter();
 	}
 
