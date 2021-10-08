@@ -9,6 +9,8 @@ import akuto2.peex.blocks.BlockMatter;
 import akuto2.peex.blocks.BlockRelay;
 import akuto2.peex.items.ItemBlockMatter;
 import akuto2.peex.items.ItemMatter;
+import akuto2.peex.items.armor.ItemBMArmor;
+import akuto2.peex.items.armor.ItemCMArmor;
 import akuto2.peex.recipes.RecipeAEGUMk3;
 import akuto2.peex.tiles.TileEntityCollectorFinal;
 import akuto2.peex.tiles.TileEntityCollectorMk10;
@@ -25,10 +27,14 @@ import moze_intel.projecte.gameObjs.tiles.TileEntityRelayFinal;
 import moze_intel.projecte.gameObjs.tiles.TileEntityRelayMk4;
 import moze_intel.projecte.gameObjs.tiles.TileEntityRelayMk5;
 import net.minecraft.block.Block;
+import net.minecraft.init.SoundEvents;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -69,6 +75,19 @@ public class ObjHandlerPEEX {
 	public static Block relayFinal;
 	public static Block matterBlock;
 	public static Item matter;
+
+	public static Item bmHelmet;
+	public static Item bmChest;
+	public static Item bmLegs;
+	public static Item bmFeet;
+
+	public static Item cmHelmet;
+	public static Item cmChest;
+	public static Item cmLegs;
+	public static Item cmFeet;
+
+	public static ArmorMaterial bmMaterial;
+	public static ArmorMaterial cmMaterial;
 
 	public static Register register = new Register("peex", PEEXCore.tabPEEX);
 
@@ -146,6 +165,19 @@ public class ObjHandlerPEEX {
 	public static void registerItems(RegistryEvent.Register<Item> event) {
 		matter = new ItemMatter();
 
+		bmMaterial = EnumHelper.addArmorMaterial("bm_material", "", 9999, new int[] { 8, 12, 10, 6 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 3.0F);
+		cmMaterial = EnumHelper.addArmorMaterial("cm_material", "", 9999, new int[] { 10, 15, 13, 8 }, 25, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 4.0F);
+
+		bmHelmet = new ItemBMArmor(EntityEquipmentSlot.HEAD);
+		bmChest = new ItemBMArmor(EntityEquipmentSlot.CHEST);
+		bmLegs = new ItemBMArmor(EntityEquipmentSlot.LEGS);
+		bmFeet = new ItemBMArmor(EntityEquipmentSlot.FEET);
+
+		cmHelmet = new ItemCMArmor(EntityEquipmentSlot.HEAD);
+		cmChest = new ItemCMArmor(EntityEquipmentSlot.CHEST);
+		cmLegs = new ItemCMArmor(EntityEquipmentSlot.LEGS);
+		cmFeet = new ItemCMArmor(EntityEquipmentSlot.FEET);
+
 		register.setRegistry(event.getRegistry());
 		register.register(new ItemBlock(aeguMk1_off).setRegistryName(aeguMk1_off.getRegistryName()));
 		register.register(new ItemBlock(aeguMk1_on).setRegistryName(aeguMk1_on.getRegistryName()));
@@ -177,6 +209,14 @@ public class ObjHandlerPEEX {
 		register.register(new ItemBlock(relayFinal).setRegistryName(relayFinal.getRegistryName()));
 		register.register(new ItemBlockMatter(matterBlock).setRegistryName(matterBlock.getRegistryName()));
 		register.register(matter, "matter");
+		register.register(bmHelmet, "bm_helmet");
+		register.register(bmChest, "bm_chest");
+		register.register(bmLegs, "bm_legs");
+		register.register(bmFeet, "bm_feet");
+		register.register(cmHelmet, "cm_helmet");
+		register.register(cmChest, "cm_chest");
+		register.register(cmLegs, "cm_legs");
+		register.register(cmFeet, "cm_feet");
 	}
 
 	public static void register() {

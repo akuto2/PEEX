@@ -1,0 +1,17 @@
+{
+    "result": {
+        "item": "peex:bm_legs"
+    },
+    "type": "minecraft:crafting_shaped",
+     "pattern":[
+        "mmm",
+        "m m",
+        "m m"
+    ],
+    "key": {
+        "m": {
+            "item": "peex:matter",
+            "data": 0
+        }
+    }
+}

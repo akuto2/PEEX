@@ -57,6 +57,16 @@ public class ClientProxy extends CommonProxy{
 		registerBlock(ObjHandlerPEEX.relayMk5);
 		registerBlock(ObjHandlerPEEX.relayFinal);
 
+		registerItem(ObjHandlerPEEX.bmHelmet);
+		registerItem(ObjHandlerPEEX.bmChest);
+		registerItem(ObjHandlerPEEX.bmLegs);
+		registerItem(ObjHandlerPEEX.bmFeet);
+
+		registerItem(ObjHandlerPEEX.cmHelmet);
+		registerItem(ObjHandlerPEEX.cmChest);
+		registerItem(ObjHandlerPEEX.cmLegs);
+		registerItem(ObjHandlerPEEX.cmFeet);
+
 		registerMatter();
 	}
 
@@ -72,7 +82,7 @@ public class ClientProxy extends CommonProxy{
 	}
 
 	private static void registerItem(Item item) {
-		registerItem(item);
+		registerItem(item, 0);
 	}
 
 	private static void registerItem(Item item, int meta) {

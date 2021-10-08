@@ -1,0 +1,16 @@
+{
+    "result": {
+        "item": "peex:cm_helmet"
+    },
+    "type": "minecraft:crafting_shaped",
+     "pattern":[
+        "mmm",
+        "m m"
+    ],
+    "key": {
+        "m": {
+            "item": "peex:matter",
+            "data": 1
+        }
+    }
+}
