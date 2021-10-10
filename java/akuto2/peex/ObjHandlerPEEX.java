@@ -23,6 +23,7 @@ import akuto2.peex.tiles.TileEntityCollectorMk9;
 import akuto2.peex.tiles.TileEntityCondenserGrade0;
 import akuto2.peex.tiles.TileEntityCondenserMk3;
 import lib.utils.Register;
+import moze_intel.projecte.api.ProjectEAPI;
 import moze_intel.projecte.gameObjs.tiles.TileEntityRelayFinal;
 import moze_intel.projecte.gameObjs.tiles.TileEntityRelayMk4;
 import moze_intel.projecte.gameObjs.tiles.TileEntityRelayMk5;
@@ -32,6 +33,7 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.util.EnumHelper;
@@ -240,5 +242,7 @@ public class ObjHandlerPEEX {
 	public static void addRecipes(RegistryEvent.Register<IRecipe> event) {
 		// AEGUMK3(指定のレシピを必要とするため)
 		event.getRegistry().register(new RecipeAEGUMk3());
+		// 究極型AEGUのEMC設定
+		ProjectEAPI.getEMCProxy().registerCustomEMC(new ItemStack(aeguMk3_off), 737153536L);
 	}
 }
