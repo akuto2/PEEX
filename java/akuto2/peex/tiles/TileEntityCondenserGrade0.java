@@ -70,7 +70,7 @@ public class TileEntityCondenserGrade0 extends TileEntity implements ITickable{
 					return super.extractItem(slot, amount, simulate);
 				}
 				else {
-					return null;
+					return ItemStack.EMPTY;
 				}
 			}
 		};

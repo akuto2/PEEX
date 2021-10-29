@@ -65,7 +65,7 @@ public class BlockCondenserGrade0 extends BlockDirection{
 		if(!worldIn.isRemote) {
 			playerIn.openGui(PEEXCore.instance, Constants.CONDENSER_GRADE_0_GUI, worldIn, pos.getX(), pos.getY(), pos.getZ());
 		}
-		return false;
+		return true;
 	}
 
 	@Override
